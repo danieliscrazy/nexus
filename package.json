@@ -1,0 +1,19 @@
+{
+  "name": "horizons-nexus",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/svelte": "^7.2.0",
+    "astro": "^5.16.0",
+    "svelte": "^5.40.0",
+    "typescript": "^5.9.0"
+  }
+}

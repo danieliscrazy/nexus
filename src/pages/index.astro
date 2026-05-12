@@ -1,0 +1,207 @@
+---
+import Base from '../layouts/Base.astro';
+import Countdown from '../components/Countdown.svelte';
+
+const themeAnnouncement = '2026-05-15T00:00:00-07:00';
+---
+
+<Base>
+  <main class="stage">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="doodle doodle--left" aria-hidden="true">
+      <img src="/images/doodle-left.png" alt="" />
+    </div>
+    <div class="doodle doodle--right" aria-hidden="true">
+      <img src="/images/doodle-right.png" alt="" />
+    </div>
+
+    <div class="content">
+      <img class="logo" src="/images/logo.png" alt="Horizons Nexus" />
+
+      <div class="meta">
+        <p class="meta__line">
+          Announcement in <Countdown client:load target={themeAnnouncement} />
+        </p>
+        <a
+          class="meta__link"
+          href="https://horizons.hackclub.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Sign up now →
+        </a>
+      </div>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .stage {
+    position: relative;
+    min-height: 100svh;
+    width: 100%;
+    overflow: hidden;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: max(24px, 25.7svh) 24px 24px;
+    animation: fade-in 500ms ease both;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stage {
+      animation: none;
+    }
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/bg.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .doodle {
+    position: absolute;
+    top: 0;
+    height: 100svh;
+    aspect-ratio: 524.82 / 845;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+  }
+
+  .doodle img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .doodle--left {
+    left: -9svh;
+  }
+
+  .doodle--right {
+    right: -12svh;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 855px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 17px;
+    text-align: center;
+  }
+
+  .logo {
+    display: block;
+    width: 100%;
+    max-width: 855px;
+    height: auto;
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: #fff;
+    line-height: 1.4;
+  }
+
+  .meta__line {
+    margin: 0;
+    font-family: 'Cabin', system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  .meta__line :global(.countdown) {
+    font-size: inherit;
+    font-weight: 700;
+  }
+
+  .meta__link {
+    font-family: 'Cabin', system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    display: inline-block;
+    transform-origin: center;
+    transition: transform 150ms ease, opacity 150ms ease;
+  }
+
+  .meta__link:hover,
+  .meta__link:focus-visible {
+    transform: scale(1.06);
+    outline: none;
+  }
+
+  .meta__link:active {
+    transform: scale(0.96);
+    transition-duration: 80ms;
+  }
+
+  @media (max-height: 700px) {
+    .stage {
+      justify-content: center;
+      padding-top: 24px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .stage {
+      padding: max(16px, 18svh) 16px 16px;
+    }
+
+    .doodle {
+      opacity: 0.5;
+    }
+
+    .doodle--left {
+      left: -20svh;
+    }
+
+    .doodle--right {
+      right: -25svh;
+    }
+
+    .logo {
+      max-width: 92vw;
+    }
+
+    .meta__line {
+      font-size: 16px;
+    }
+
+    .meta__link {
+      font-size: 14px;
+    }
+  }
+</style>
