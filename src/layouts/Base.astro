@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import logo from '../assets/images/logo.png';
 
 interface Props {
   title?: string;
@@ -18,7 +19,7 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="icon" type="image/png" href={logo.src} />
     <title>{title}</title>
   </head>
   <body>

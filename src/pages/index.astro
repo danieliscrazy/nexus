@@ -1,22 +1,64 @@
 ---
 import Base from '../layouts/Base.astro';
+import { Picture } from 'astro:assets';
 import Countdown from '../components/Countdown.svelte';
+import bg from '../assets/images/bg.png';
+import doodleLeft from '../assets/images/doodle-left.png';
+import doodleRight from '../assets/images/doodle-right.png';
+import logo from '../assets/images/logo.png';
 
 const themeAnnouncement = '2026-05-15T00:00:00-07:00';
 ---
 
 <Base>
   <main class="stage">
-    <div class="bg" aria-hidden="true"></div>
+    <div class="bg" aria-hidden="true">
+      <Picture
+        src={bg}
+        alt=""
+        formats={['webp']}
+        fallbackFormat="png"
+        widths={[640, 1024, 1600, 2048, 2732]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
     <div class="doodle doodle--left" aria-hidden="true">
-      <img src="/images/doodle-left.png" alt="" />
+      <Picture
+        src={doodleLeft}
+        alt=""
+        formats={['webp']}
+        fallbackFormat="png"
+        widths={[400, 800, 1280, 1920, 2540]}
+        sizes="(max-width: 600px) 60vh, 50vh"
+        loading="eager"
+      />
     </div>
     <div class="doodle doodle--right" aria-hidden="true">
-      <img src="/images/doodle-right.png" alt="" />
+      <Picture
+        src={doodleRight}
+        alt=""
+        formats={['webp']}
+        fallbackFormat="png"
+        widths={[400, 800, 1280, 1920, 2544]}
+        sizes="(max-width: 600px) 60vh, 50vh"
+        loading="eager"
+      />
     </div>
 
     <div class="content">
-      <img class="logo" src="/images/logo.png" alt="Horizons Nexus" />
+      <Picture
+        class="logo"
+        src={logo}
+        alt="Horizons Nexus"
+        formats={['webp']}
+        fallbackFormat="png"
+        widths={[480, 720, 855, 1020]}
+        sizes="(max-width: 600px) 92vw, min(855px, 100vw)"
+        loading="eager"
+        fetchpriority="high"
+      />
 
       <div class="meta">
         <p class="meta__line">
@@ -68,12 +110,16 @@ const themeAnnouncement = '2026-05-15T00:00:00-07:00';
   .bg {
     position: absolute;
     inset: 0;
-    background-image: url('/images/bg.png');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
     pointer-events: none;
     z-index: 0;
+  }
+
+  .bg :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
   }
 
   .doodle {
@@ -87,7 +133,7 @@ const themeAnnouncement = '2026-05-15T00:00:00-07:00';
     z-index: 1;
   }
 
-  .doodle img {
+  .doodle :global(img) {
     display: block;
     width: 100%;
     height: 100%;
@@ -117,7 +163,7 @@ const themeAnnouncement = '2026-05-15T00:00:00-07:00';
     text-align: center;
   }
 
-  .logo {
+  .content :global(.logo) {
     display: block;
     width: 100%;
     max-width: 855px;
@@ -192,7 +238,7 @@ const themeAnnouncement = '2026-05-15T00:00:00-07:00';
       right: -25svh;
     }
 
-    .logo {
+    .content :global(.logo) {
       max-width: 92vw;
     }
 
