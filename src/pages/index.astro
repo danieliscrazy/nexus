@@ -5,7 +5,6 @@ import Countdown from '../components/Countdown.svelte';
 import bg from '../assets/images/bg.png';
 import doodleLeft from '../assets/images/doodle-left.png';
 import doodleRight from '../assets/images/doodle-right.png';
-import logo from '../assets/images/logo.png';
 
 const themeAnnouncement = '2026-05-22T00:00:00-07:00';
 ---
@@ -48,14 +47,12 @@ const themeAnnouncement = '2026-05-22T00:00:00-07:00';
     </div>
 
     <div class="content">
-      <Picture
+      <img
         class="logo"
-        src={logo}
+        src="/nexus.svg"
         alt="Horizons Nexus"
-        formats={['webp']}
-        fallbackFormat="png"
-        widths={[480, 720, 855, 1020]}
-        sizes="(max-width: 600px) 92vw, min(855px, 100vw)"
+        width="856"
+        height="404"
         loading="eager"
         fetchpriority="high"
       />
