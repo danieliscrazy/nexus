@@ -1,105 +1,250 @@
 ---
 import Base from '../layouts/Base.astro';
-import { Picture } from 'astro:assets';
-import Countdown from '../components/Countdown.svelte';
-import bg from '../assets/images/bg.png';
-import doodleLeft from '../assets/images/doodle-left.png';
-import doodleRight from '../assets/images/doodle-right.png';
-
-const themeAnnouncement = '2026-05-20T20:00:00-04:00';
+import { Image } from 'astro:assets';
+import bgTexture from '../assets/figma/bg-texture.png';
+import leftNexusSketch from '../assets/figma/left-nexus-sketch.png';
+import fullNexusSketch from '../assets/figma/full-nexus-sketch.png';
+import spiral from '../assets/figma/spiral.png';
+import orb from '../assets/figma/orb.png';
+import cardBorder from '../assets/figma/card-border.png';
+import cardBorderBack from '../assets/figma/card-border-back.png';
+import bgTextureChalk from '../assets/figma/bg-texture-chalk.png';
+import steps from '../assets/figma/steps.gif';
+import bordTl from '../assets/figma/bord/tl.png';
+import bordTop from '../assets/figma/bord/top.png';
+import bordTr from '../assets/figma/bord/tr.png';
+import bordLeft from '../assets/figma/bord/left.png';
+import bordCenter from '../assets/figma/bord/center.png';
+import bordRight from '../assets/figma/bord/right.png';
+import bordBl from '../assets/figma/bord/bl.png';
+import bordBottom from '../assets/figma/bord/bottom.png';
+import bordBr from '../assets/figma/bord/br.png';
+import nexusLogo from '../assets/figma/nexus.svg';
 ---
 
 <Base>
-  <main class="stage">
-    <div class="bg" aria-hidden="true">
-      <Picture
-        src={bg}
-        alt=""
-        formats={['webp']}
-        fallbackFormat="png"
-        widths={[640, 1024, 1600, 2048, 2732]}
-        sizes="100vw"
-        loading="eager"
-        fetchpriority="high"
-      />
-    </div>
-    <div class="doodle doodle--left" aria-hidden="true">
-      <Picture
-        src={doodleLeft}
-        alt=""
-        formats={['webp']}
-        fallbackFormat="png"
-        widths={[400, 800, 1280, 1920, 2540]}
-        sizes="(max-width: 600px) 60vh, 50vh"
-        loading="eager"
-      />
-    </div>
-    <div class="doodle doodle--right" aria-hidden="true">
-      <Picture
-        src={doodleRight}
-        alt=""
-        formats={['webp']}
-        fallbackFormat="png"
-        widths={[400, 800, 1280, 1920, 2544]}
-        sizes="(max-width: 600px) 60vh, 50vh"
-        loading="eager"
-      />
-    </div>
-
-    <div class="content">
-      <img
-        class="logo"
-        src="/nexus.svg"
-        alt="Horizons Nexus"
-        width="856"
-        height="404"
-        loading="eager"
-        fetchpriority="high"
-      />
-
-      <div class="meta">
-        <p class="meta__line">
-          Announcement in <Countdown client:load target={themeAnnouncement} />
-        </p>
-        <a
-          class="meta__link"
-          href="https://horizons.hackclub.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Sign up now →
-        </a>
+  <div class="scroll-shell">
+    <main class="hero">
+      <div class="bg" aria-hidden="true">
+        <Image
+          class="bg__base"
+          src={bgTexture}
+          alt=""
+          widths={[800, 1403, 2200]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <Image
+          class="bg__strand bg__strand--left"
+          src={leftNexusSketch}
+          alt=""
+          widths={[400, 612, 1200]}
+          sizes="(max-width: 800px) 70vh, 612px"
+          loading="eager"
+        />
+        <Image
+          class="bg__strand bg__strand--right"
+          src={fullNexusSketch}
+          alt=""
+          widths={[400, 611, 1200]}
+          sizes="(max-width: 800px) 70vh, 611px"
+          loading="eager"
+        />
+        <Image
+          class="bg__doodles"
+          src={spiral}
+          alt=""
+          widths={[800, 1534, 2400]}
+          sizes="110vw"
+          loading="eager"
+        />
+        <div class="bg__blob">
+          <Image
+            class="bg__blob-img"
+            src={orb}
+            alt=""
+            widths={[800, 1600, 2400]}
+            sizes="(max-width: 800px) 180vw, 140vw"
+            loading="eager"
+          />
+        </div>
       </div>
-    </div>
-  </main>
+
+      <div class="stage4" aria-hidden="true">
+        <Image
+          class="stage4-bg"
+          src={bgTextureChalk}
+          alt=""
+          widths={[800, 1403, 2200]}
+          sizes="100vw"
+          loading="eager"
+        />
+        <div class="stage4-frame">
+          <div class="bord-frame">
+            <div class="bord-slice bord-slice--tl"><Image src={bordTl} alt="" widths={[60, 120]} sizes="5vw" loading="eager" /></div>
+            <div class="bord-slice bord-slice--top"><Image src={bordTop} alt="" widths={[300, 600, 900]} sizes="35vw" loading="eager" /></div>
+            <div class="bord-slice bord-slice--tr"><Image src={bordTr} alt="" widths={[60, 120]} sizes="5vw" loading="eager" /></div>
+            <div class="bord-slice bord-slice--left"><Image src={bordLeft} alt="" widths={[60, 120]} sizes="5vw" loading="eager" /></div>
+            <div class="bord-slice bord-slice--center"><Image src={bordCenter} alt="" widths={[300, 600, 900]} sizes="35vw" loading="eager" /></div>
+            <div class="bord-slice bord-slice--right"><Image src={bordRight} alt="" widths={[60, 120]} sizes="5vw" loading="eager" /></div>
+            <div class="bord-slice bord-slice--bl"><Image src={bordBl} alt="" widths={[60, 120]} sizes="5vw" loading="eager" /></div>
+            <div class="bord-slice bord-slice--bottom"><Image src={bordBottom} alt="" widths={[300, 600, 900]} sizes="35vw" loading="eager" /></div>
+            <div class="bord-slice bord-slice--br"><Image src={bordBr} alt="" widths={[60, 120]} sizes="5vw" loading="eager" /></div>
+            <p class="bord-text">Here&rsquo;s how it works</p>
+          </div>
+          <div class="steps-card steps-card--1"><img class="steps-img" src={steps.src} alt="" /></div>
+          <div class="steps-card steps-card--2"><img class="steps-img" src={steps.src} alt="" /></div>
+          <div class="steps-card steps-card--3"><img class="steps-img" src={steps.src} alt="" /></div>
+          <div class="steps-card steps-card--4"><img class="steps-img" src={steps.src} alt="" /></div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="logo-wrap">
+          <img
+            class="logo"
+            src={nexusLogo.src}
+            alt="Horizons Nexus"
+            width="681"
+            height="308"
+          />
+        </div>
+
+        <div class="card-wrap">
+          <div class="card">
+            <div class="card-flip">
+              <div class="card-face card-face--front">
+                <Image
+                  class="card-art"
+                  src={cardBorder}
+                  alt=""
+                  widths={[400, 525, 1050]}
+                  sizes="(max-width: 600px) 92vw, 525px"
+                  loading="eager"
+                />
+                <div class="card-body card-body--orig">
+                  <h2 class="card-title">play the hand you&rsquo;re dealt</h2>
+                  <p class="card-desc">
+                    We&rsquo;re running a hackathon where you draw cards to build wild and crazy projects.
+                    <span class="card-desc__sub">San Francisco, June 19th &ndash; 21st</span>
+                  </p>
+                  <form
+                    class="card-form"
+                    action="https://horizons.hackclub.com"
+                    method="get"
+                    target="_blank"
+                  >
+                    <input
+                      type="email"
+                      name="email"
+                      class="card-input"
+                      placeholder="me@gmail.com"
+                      aria-label="Email address"
+                      autocomplete="email"
+                    />
+                    <button type="submit" class="card-button">Sign Up &rarr;</button>
+                  </form>
+                  <p class="card-scroll">SCROLL TO READ MORE...</p>
+                </div>
+                <div class="card-body card-body--alt" aria-hidden="true">
+                  <p class="card-alt-text">
+                    This summer,<br />we&rsquo;re running a different kind of hackathon&hellip;
+                  </p>
+                </div>
+              </div>
+              <div class="card-face card-face--back" aria-hidden="true">
+                <Image
+                  class="card-art card-art--back"
+                  src={cardBorderBack}
+                  alt=""
+                  widths={[400, 525, 1050]}
+                  sizes="(max-width: 600px) 92vw, 525px"
+                  loading="eager"
+                />
+                <p class="card-invited-text">And you&rsquo;re invited.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
 </Base>
 
 <style>
-  .stage {
+  .scroll-shell {
     position: relative;
-    min-height: 100svh;
     width: 100%;
+    height: 900svh;
+  }
+
+  .hero {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100svh;
     overflow: hidden;
-    background-color: #000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: max(24px, 25.7svh) 24px 24px;
-    animation: fade-in 500ms ease both;
+    background: #000;
+    --card-w: clamp(280px, 32vw, 640px);
+    --card-peek: 0.659;
+    --top-pad: clamp(20px, 19svh, 180px);
+    --logo-gap: 22px;
+    --logo-max-h: max(80px, calc(100svh - var(--top-pad) - (1.4 - var(--card-peek)) * var(--card-w) - var(--logo-gap)));
+    --card-translate-up: calc(-50svh + (0.7 - var(--card-peek)) * var(--card-w));
   }
 
   @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes card-entry-slide {
+    from { transform: translateX(-50%) translateY(100%); }
+    to { transform: translateX(-50%) translateY(0); }
+  }
+
+  .bg__blob,
+  .logo-wrap,
+  .bg__doodles,
+  .bg__strand,
+  .card-wrap {
+    animation-fill-mode: backwards;
+    animation-timing-function: ease-out;
+  }
+
+  .bg__blob {
+    animation-name: fade-in;
+    animation-duration: 1100ms;
+    animation-delay: 200ms;
+  }
+
+  .logo-wrap,
+  .bg__doodles {
+    animation-name: fade-in;
+    animation-duration: 1000ms;
+    animation-delay: 1100ms;
+  }
+
+  .bg__strand {
+    animation-name: fade-in;
+    animation-duration: 1000ms;
+    animation-delay: 1900ms;
+  }
+
+  .card-wrap {
+    animation-name: card-entry-slide;
+    animation-duration: 1200ms;
+    animation-delay: 2700ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .stage {
+    .bg__blob,
+    .logo-wrap,
+    .bg__doodles,
+    .bg__strand,
+    .card-wrap {
       animation: none;
     }
   }
@@ -108,143 +253,583 @@ const themeAnnouncement = '2026-05-20T20:00:00-04:00';
     position: absolute;
     inset: 0;
     pointer-events: none;
+    user-select: none;
     z-index: 0;
   }
 
   .bg :global(img) {
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .bg__base {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center;
     display: block;
   }
 
-  .doodle {
+  .bg__doodles {
     position: absolute;
-    top: 0;
-    height: 100svh;
-    aspect-ratio: 524.82 / 845;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    opacity: calc(1 - var(--reveal, 0));
+  }
+
+  .bg__strand {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: max(110svh, clamp(720px, 70.2vw, 1400px));
+    width: auto;
+    max-width: 45%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    opacity: calc(1 - var(--reveal, 0));
+  }
+
+  .bg__strand--left {
+    left: 0;
+  }
+
+  .bg__strand--right {
+    right: 0;
+  }
+
+  .bg__blob {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(360px, 53.32vw, 1100px);
+    aspect-ratio: 1;
     overflow: hidden;
     pointer-events: none;
-    user-select: none;
-    z-index: 1;
+    opacity: calc(1 - var(--reveal, 0));
   }
 
-  .doodle :global(img) {
-    display: block;
+  .stage4 {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .stage4 :global(.stage4-bg) {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center;
+    object-position: center;
+    display: block;
+    opacity: var(--reveal, 0);
+  }
+
+  .stage4-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(100vw, calc(100svh * 1403 / 942));
+    aspect-ratio: 1403 / 942;
     pointer-events: none;
     user-select: none;
   }
 
-  .doodle--left {
-    left: -9svh;
+  /* Bord state ("Here's how it works") - centered, scaled larger than Figma's 591x452 */
+  .bord-frame {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 58%;
+    aspect-ratio: 591 / 452;
+    pointer-events: none;
   }
 
-  .doodle--right {
-    right: -12svh;
+  .bord-slice {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .bord-slice :global(img) {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: fill;
+  }
+
+  .bord-slice--tl     { top: 0;     left: 0;     width: 10.20%; height: 14.00%; }
+  .bord-slice--top    { top: 0;     left: 10.20%; right: 10.20%; height: 14.00%; }
+  .bord-slice--tr     { top: 0;     right: 0;    width: 10.20%; height: 14.00%; }
+  .bord-slice--left   { top: 14.00%; bottom: 12.70%; left: 0;    width: 10.20%; }
+  .bord-slice--center { top: 14.00%; left: 10.20%; right: 10.20%; bottom: 12.70%; }
+  .bord-slice--right  { top: 14.00%; bottom: 12.70%; right: 0;   width: 10.20%; }
+  .bord-slice--bl     { bottom: 0;  left: 0;     width: 10.20%; height: 12.70%; }
+  .bord-slice--bottom { bottom: 0;  left: 10.20%; right: 10.20%; height: 12.70%; }
+  .bord-slice--br     { bottom: 0;  right: 0;    width: 10.20%; height: 12.70%; }
+
+  /* Staggered bord slice fade-in via --reveal; fade out via --phase4 */
+  .bord-slice--tl     { opacity: calc(clamp(0, calc((var(--reveal, 0) - 0.00) * 5), 1) * (1 - var(--bord-out, 0))); }
+  .bord-slice--top    { opacity: calc(clamp(0, calc((var(--reveal, 0) - 0.10) * 5), 1) * (1 - var(--bord-out, 0))); }
+  .bord-slice--tr     { opacity: calc(clamp(0, calc((var(--reveal, 0) - 0.20) * 5), 1) * (1 - var(--bord-out, 0))); }
+  .bord-slice--right  { opacity: calc(clamp(0, calc((var(--reveal, 0) - 0.30) * 5), 1) * (1 - var(--bord-out, 0))); }
+  .bord-slice--br     { opacity: calc(clamp(0, calc((var(--reveal, 0) - 0.40) * 5), 1) * (1 - var(--bord-out, 0))); }
+  .bord-slice--bottom { opacity: calc(clamp(0, calc((var(--reveal, 0) - 0.50) * 5), 1) * (1 - var(--bord-out, 0))); }
+  .bord-slice--bl     { opacity: calc(clamp(0, calc((var(--reveal, 0) - 0.60) * 5), 1) * (1 - var(--bord-out, 0))); }
+  .bord-slice--left   { opacity: calc(clamp(0, calc((var(--reveal, 0) - 0.70) * 5), 1) * (1 - var(--bord-out, 0))); }
+  .bord-slice--center { opacity: calc(clamp(0, calc((var(--reveal, 0) - 0.80) * 5), 1) * (1 - var(--bord-out, 0))); }
+
+  .bord-text {
+    position: absolute;
+    left: 50%;
+    top: 43.4%;
+    transform: translateX(-50%);
+    margin: 0;
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(20px, 3.42vw, 56px);
+    text-align: center;
+    color: #fff;
+    white-space: nowrap;
+    line-height: 1;
+    opacity: calc(clamp(0, calc((var(--reveal, 0) - 0.6) * 3), 1) * (1 - var(--bord-out, 0)));
+  }
+
+  /* 4-card grid (state 5), fades in during phase4 */
+  .steps-card {
+    position: absolute;
+    width: 26.24%; /* 368.173 / 1403 */
+    aspect-ratio: 368.173 / 270.438;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .steps-card--1 { left: 23.09%; top: 9.34%; }
+  .steps-card--2 { left: 50.54%; top: 28.36%; }
+  .steps-card--3 { left: 23.09%; top: 42.72%; }
+  .steps-card--4 { left: 50.54%; top: 61.84%; }
+
+  .steps-img {
+    position: absolute;
+    width: 291.26%;
+    height: 297.24%;
+    max-width: none;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .steps-card--1 .steps-img { left: -40.62%;  top: -8.56%;   }
+  .steps-card--2 .steps-img { left: -150.14%; top: -61.86%;  }
+  .steps-card--3 .steps-img { left: -41.61%;  top: -130%;    }
+  .steps-card--4 .steps-img { left: -149.15%; top: -177.91%; }
+
+  /* Each step fades + scales 1.2 → 1; per-step progress provided by JS */
+  .steps-card--1 {
+    opacity: var(--step-1, 0);
+    transform: scale(calc(1.2 - 0.2 * var(--step-1, 0)));
+  }
+  .steps-card--2 {
+    opacity: var(--step-2, 0);
+    transform: scale(calc(1.2 - 0.2 * var(--step-2, 0)));
+  }
+  .steps-card--3 {
+    opacity: var(--step-3, 0);
+    transform: scale(calc(1.2 - 0.2 * var(--step-3, 0)));
+  }
+  .steps-card--4 {
+    opacity: var(--step-4, 0);
+    transform: scale(calc(1.2 - 0.2 * var(--step-4, 0)));
+  }
+
+  .bg__blob :global(.bg__blob-img) {
+    position: absolute;
+    display: block;
+    width: 254.38%;
+    height: 190.79%;
+    left: -82.06%;
+    top: -46.5%;
+    max-width: none;
   }
 
   .content {
     position: relative;
-    z-index: 2;
+    z-index: 1;
+    min-height: 100svh;
     width: 100%;
-    max-width: 855px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 17px;
-    text-align: center;
+    justify-content: flex-start;
+    padding: var(--top-pad) 16px 0;
   }
 
-  .content :global(.logo) {
+  .logo-wrap {
+    flex-shrink: 0;
     display: block;
-    width: 100%;
-    max-width: 855px;
+  }
+
+  .logo {
+    width: min(clamp(320px, 55vw, 1050px), calc(var(--logo-max-h) * 681 / 308));
     height: auto;
+    aspect-ratio: 681 / 308;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+    opacity: calc(1 - var(--phase1, 0));
   }
 
-  .meta {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
+  .card-wrap {
+    position: absolute;
+    bottom: calc(-1 * var(--card-peek) * var(--card-w));
+    left: 50%;
+    width: var(--card-w);
+    aspect-ratio: 525 / 735;
+    transform: translateX(-50%);
+  }
+
+  .card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    container-type: inline-size;
     color: #fff;
-    line-height: 1.4;
+    transform: translateY(calc(var(--card-translate-up) * var(--phase1, 0)))
+               rotate(calc(-2.41deg + 2.41deg * var(--phase1, 0) + 7deg * var(--tilt, 0) + 25deg * var(--zoom, 0)))
+               scale(calc(1 + 4 * var(--zoom, 0)));
+    transform-origin: center center;
+    perspective: 1800px;
   }
 
-  .meta__line {
+  .card-flip {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transform: rotateY(calc(var(--flip, 0) * 180deg + var(--zoom, 0) * 180deg));
+    transition: transform 0s;
+  }
+
+  .card-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .card-face--front {
+    background: #000;
+    outline: 2px solid rgba(255, 255, 255, var(--phase1, 0));
+    outline-offset: -2px;
+  }
+
+  .card-face--back {
+    transform: rotateY(180deg);
+    background: #fff;
+    outline: 2px solid #000;
+    outline-offset: -2px;
+    color: #000;
+  }
+
+  .card-invited-text {
+    position: absolute;
+    top: 46.667%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80.76cqi;
     margin: 0;
-    font-family: 'Cabin', system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+    font-family: 'Delius', system-ui, sans-serif;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 6.857cqi;
+    text-align: center;
+    line-height: normal;
+    color: #000;
   }
 
-  .meta__line :global(.countdown) {
-    font-size: inherit;
-    font-weight: 700;
+  .card-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    pointer-events: none;
+    user-select: none;
   }
 
-  .meta__link {
-    font-family: 'Cabin', system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+  .card-body {
+    position: absolute;
+    inset: 0;
+  }
+
+  .card-body--orig {
+    opacity: calc(1 - var(--phase1, 0));
+  }
+
+  .card-body--alt {
+    opacity: calc(var(--phase1, 0) - 5 * var(--zoom, 0));
+    pointer-events: none;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 13.726%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80.93cqi;
+    margin: 0;
+    font-family: 'Delius Unicase', system-ui, sans-serif;
     font-weight: 400;
-    font-size: 16px;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
-    display: inline-block;
-    transform-origin: center;
-    transition: transform 150ms ease, opacity 150ms ease;
+    font-size: 4.571cqi;
+    text-align: center;
+    line-height: normal;
+    color: #fff;
   }
 
-  .meta__link:hover,
-  .meta__link:focus-visible {
-    transform: scale(1.06);
+  .card-desc {
+    position: absolute;
+    top: 19.306%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80.76cqi;
+    margin: 0;
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 3.81cqi;
+    text-align: center;
+    line-height: normal;
+    color: #fff;
+  }
+
+  .card-desc__sub {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .card-form {
+    position: absolute;
+    top: 33.969%;
+    left: 13.246cqi;
+    display: flex;
+    align-items: center;
+    gap: 2.095cqi;
+    height: 9.33cqi;
+    width: 75.534cqi;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .card-input,
+  .card-button {
+    height: 100%;
+    border: 0.381cqi solid #fff;
+    border-radius: 3.048cqi;
+    padding: 1.524cqi 3.048cqi;
+    background: transparent;
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 3.81cqi;
+    line-height: normal;
+    text-align: center;
+    color: #fff;
+    box-sizing: border-box;
     outline: none;
   }
 
-  .meta__link:active {
-    transform: scale(0.96);
+  .card-input {
+    width: 49.875cqi;
+    flex-shrink: 0;
+  }
+
+  .card-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Delius', system-ui, sans-serif;
+    opacity: 1;
+  }
+
+  .card-input:focus-visible {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+  }
+
+  .card-button {
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 150ms ease;
+  }
+
+  .card-button:hover,
+  .card-button:focus-visible {
+    transform: scale(1.04);
+  }
+
+  .card-button:active {
+    transform: scale(0.97);
     transition-duration: 80ms;
   }
 
-  @media (max-height: 700px) {
-    .stage {
-      justify-content: center;
-      padding-top: 24px;
-    }
+  .card-scroll {
+    position: absolute;
+    top: 42.592%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    font-family: 'Delius Unicase', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 3.81cqi;
+    line-height: normal;
+    color: #fff;
+    white-space: nowrap;
   }
 
+  .card-alt-text {
+    position: absolute;
+    top: 38.9%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80.95cqi;
+    margin: 0;
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 6.857cqi;
+    text-align: center;
+    line-height: normal;
+    color: #fff;
+  }
+
+  /* Mobile layout: wider card with mostly-visible body, vertical form, larger logo */
   @media (max-width: 600px) {
-    .stage {
-      padding: max(16px, 18svh) 16px 16px;
+    .hero {
+      --card-w: min(85vw, 380px);
+      --card-peek: 0.093;
+      --logo-gap: clamp(40px, 10svh, 90px);
     }
 
-    .doodle {
-      opacity: 0.5;
+    .logo {
+      width: min(clamp(280px, 88vw, 420px), calc(var(--logo-max-h) * 681 / 308));
     }
 
-    .doodle--left {
-      left: -20svh;
+    .card-title {
+      top: 13.349%;
+      width: 74.83cqi;
+      font-size: 24px;
     }
 
-    .doodle--right {
-      right: -25svh;
+    .card-desc {
+      top: 26.479%;
+      width: 80.76cqi;
+      font-size: 20px;
     }
 
-    .content :global(.logo) {
-      max-width: 92vw;
+    .card-form {
+      top: 54.97%;
+      left: 9.93cqi;
+      width: 78.46cqi;
+      height: 30.79cqi;
+      flex-direction: column;
+      gap: 11px;
     }
 
-    .meta__line {
-      font-size: 16px;
+    .card-input,
+    .card-button {
+      width: 100%;
+      flex: 1 1 0;
+      min-height: 0;
+      font-size: 20px;
+      border-width: 2px;
+      border-radius: 16px;
+      padding: 8px 16px;
     }
 
-    .meta__link {
-      font-size: 14px;
+    .card-scroll {
+      top: 80.7%;
+      font-size: 20px;
+    }
+
+    .card-alt-text,
+    .card-invited-text {
+      font-size: 24px;
+      width: 84cqi;
     }
   }
 </style>
+
+<script>
+  const root = document.documentElement;
+  const shell = document.querySelector('.scroll-shell');
+  let raf: number | null = null;
+
+  const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+
+  const update = () => {
+    if (!(shell instanceof HTMLElement)) return;
+    const rect = shell.getBoundingClientRect();
+    const range = shell.offsetHeight - window.innerHeight;
+    if (range <= 0) {
+      root.style.setProperty('--scroll-progress', '0');
+      root.style.setProperty('--phase1', '0');
+      root.style.setProperty('--phase2', '0');
+      return;
+    }
+    const scrolled = Math.max(0, Math.min(range, -rect.top));
+    const progress = scrolled / range;
+    // 4 transitions of 20% each separated by 4% holds.
+    const phase1 = clamp01(progress / 0.2);
+    const phase2 = clamp01((progress - 0.24) / 0.2);
+    const phase3 = clamp01((progress - 0.48) / 0.2);
+    const phase4 = clamp01((progress - 0.72) / 0.2);
+    const tilt = clamp01(phase2 / 0.6);
+    const flip = clamp01((phase2 - 0.3) / 0.7);
+    const zoom = clamp01(phase3 / 0.55);
+    const reveal = clamp01((phase3 - 0.55) / 0.45);
+    const bordOut = clamp01(phase4 / 0.5);
+    const stepsIn = clamp01((phase4 - 0.5) / 0.5);
+    // Each step fades over 0.12 of stepsIn with a 0.16 hold before the next.
+    const step1 = clamp01(stepsIn / 0.12);
+    const step2 = clamp01((stepsIn - 0.28) / 0.12);
+    const step3 = clamp01((stepsIn - 0.56) / 0.12);
+    const step4 = clamp01((stepsIn - 0.84) / 0.12);
+    root.style.setProperty('--scroll-progress', progress.toFixed(4));
+    root.style.setProperty('--phase1', phase1.toFixed(4));
+    root.style.setProperty('--phase2', phase2.toFixed(4));
+    root.style.setProperty('--phase3', phase3.toFixed(4));
+    root.style.setProperty('--phase4', phase4.toFixed(4));
+    root.style.setProperty('--tilt', tilt.toFixed(4));
+    root.style.setProperty('--flip', flip.toFixed(4));
+    root.style.setProperty('--zoom', zoom.toFixed(4));
+    root.style.setProperty('--reveal', reveal.toFixed(4));
+    root.style.setProperty('--bord-out', bordOut.toFixed(4));
+    root.style.setProperty('--steps-in', stepsIn.toFixed(4));
+    root.style.setProperty('--step-1', step1.toFixed(4));
+    root.style.setProperty('--step-2', step2.toFixed(4));
+    root.style.setProperty('--step-3', step3.toFixed(4));
+    root.style.setProperty('--step-4', step4.toFixed(4));
+  };
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (raf !== null) return;
+      raf = requestAnimationFrame(() => {
+        update();
+        raf = null;
+      });
+    },
+    { passive: true }
+  );
+
+  window.addEventListener('resize', update);
+  update();
+</script>
