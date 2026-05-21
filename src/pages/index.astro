@@ -9,7 +9,6 @@ import orb from '../assets/figma/orb.png';
 import cardBorder from '../assets/figma/card-border.png';
 import cardBorderBack from '../assets/figma/card-border-back.png';
 import bgTextureChalk from '../assets/figma/bg-texture-chalk.png';
-import steps from '../assets/figma/steps.gif';
 import bordTl from '../assets/figma/bord/tl.png';
 import bordTop from '../assets/figma/bord/top.png';
 import bordTr from '../assets/figma/bord/tr.png';
@@ -93,10 +92,10 @@ import nexusLogo from '../assets/figma/nexus.svg';
             <div class="bord-slice bord-slice--br"><Image src={bordBr} alt="" widths={[60, 120]} sizes="5vw" loading="eager" /></div>
             <p class="bord-text">Here&rsquo;s how it works</p>
           </div>
-          <div class="steps-card steps-card--1"><img class="steps-img" src={steps.src} alt="" /></div>
-          <div class="steps-card steps-card--2"><img class="steps-img" src={steps.src} alt="" /></div>
-          <div class="steps-card steps-card--3"><img class="steps-img" src={steps.src} alt="" /></div>
-          <div class="steps-card steps-card--4"><img class="steps-img" src={steps.src} alt="" /></div>
+          <div class="steps-card steps-card--1"><img class="steps-img" src="/steps.png" alt="" /></div>
+          <div class="steps-card steps-card--2"><img class="steps-img" src="/steps.png" alt="" /></div>
+          <div class="steps-card steps-card--3"><img class="steps-img" src="/steps.png" alt="" /></div>
+          <div class="steps-card steps-card--4"><img class="steps-img" src="/steps.png" alt="" /></div>
         </div>
       </div>
 
@@ -496,6 +495,7 @@ import nexusLogo from '../assets/figma/nexus.svg';
     width: var(--card-w);
     aspect-ratio: 525 / 735;
     transform: translateX(-50%);
+    perspective: 1800px;
   }
 
   .card {
@@ -505,7 +505,9 @@ import nexusLogo from '../assets/figma/nexus.svg';
     container-type: inline-size;
     color: #fff;
     transform: translateY(calc(var(--card-translate-up) * var(--phase1, 0)))
-               rotate(calc(-2.41deg + 2.41deg * var(--phase1, 0) + 7deg * var(--tilt, 0) + 25deg * var(--zoom, 0)))
+               rotate(calc(var(--card-rot, -2.41) * 1deg))
+               rotateX(calc(var(--hover-y, 0) * -6deg))
+               rotateY(calc(var(--hover-x, 0) * 6deg))
                scale(calc(1 + 4 * var(--zoom, 0)));
     transform-origin: center center;
     perspective: 1800px;
@@ -515,7 +517,7 @@ import nexusLogo from '../assets/figma/nexus.svg';
     position: absolute;
     inset: 0;
     transform-style: preserve-3d;
-    transform: rotateY(calc(var(--flip, 0) * 180deg + var(--zoom, 0) * 180deg));
+    transform: rotateY(calc(var(--flip-rot, 0) * 180deg + var(--zoom-rot, 0) * 180deg));
     transition: transform 0s;
   }
 
@@ -579,7 +581,9 @@ import nexusLogo from '../assets/figma/nexus.svg';
   }
 
   .card-body--alt {
-    opacity: calc(var(--phase1, 0) - 5 * var(--zoom, 0));
+    /* Visible after the card lifts, faded out by flip 1 and kept hidden
+       through the back-face hold and the back→front flip. */
+    opacity: calc(var(--phase1, 0) * (1 - var(--flip-rot, 0)));
     pointer-events: none;
   }
 
@@ -772,6 +776,8 @@ import nexusLogo from '../assets/figma/nexus.svg';
   let raf: number | null = null;
 
   const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+  // Smoothstep: 0 velocity at endpoints, so chained transitions hand off without snap.
+  const ease = (t: number) => t * t * (3 - 2 * t);
 
   const update = () => {
     if (!(shell instanceof HTMLElement)) return;
@@ -789,18 +795,23 @@ import nexusLogo from '../assets/figma/nexus.svg';
     const phase1 = clamp01(progress / 0.2);
     const phase2 = clamp01((progress - 0.24) / 0.2);
     const phase3 = clamp01((progress - 0.48) / 0.2);
-    const phase4 = clamp01((progress - 0.72) / 0.2);
+    const phase4 = clamp01((progress - 0.72) / 0.28);
     const tilt = clamp01(phase2 / 0.6);
-    const flip = clamp01((phase2 - 0.3) / 0.7);
-    const zoom = clamp01(phase3 / 0.55);
-    const reveal = clamp01((phase3 - 0.55) / 0.45);
-    const bordOut = clamp01(phase4 / 0.5);
-    const stepsIn = clamp01((phase4 - 0.5) / 0.5);
-    // Each step fades over 0.12 of stepsIn with a 0.16 hold before the next.
-    const step1 = clamp01(stepsIn / 0.12);
-    const step2 = clamp01((stepsIn - 0.28) / 0.12);
-    const step3 = clamp01((stepsIn - 0.56) / 0.12);
-    const step4 = clamp01((stepsIn - 0.84) / 0.12);
+    // Choreography: 1) "this summer" front showing, 2) flip to back,
+    // 3) hold on "and you're invited" so it can be read, 4) flip back to front,
+    // 5) midway through that flip (rotateY≈270°, black side visible again) the
+    // zoom kicks in. Reveal starts as the zoom is finishing up.
+    const flip = clamp01((progress - 0.30) / 0.10);     // front → back
+    const flipBack = clamp01((progress - 0.50) / 0.10); // back → front
+    const zoom = clamp01((progress - 0.55) / 0.12);     // starts mid-flipBack
+    const reveal = clamp01((progress - 0.62) / 0.10);
+    const bordOut = clamp01(phase4 / 0.36);
+    const stepsIn = clamp01((phase4 - 0.25) / 0.75);
+    // Each step fades over 0.10 of stepsIn with a 0.20 hold before the next.
+    const step1 = clamp01(stepsIn / 0.10);
+    const step2 = clamp01((stepsIn - 0.30) / 0.10);
+    const step3 = clamp01((stepsIn - 0.60) / 0.10);
+    const step4 = clamp01((stepsIn - 0.90) / 0.10);
     root.style.setProperty('--scroll-progress', progress.toFixed(4));
     root.style.setProperty('--phase1', phase1.toFixed(4));
     root.style.setProperty('--phase2', phase2.toFixed(4));
@@ -816,6 +827,23 @@ import nexusLogo from '../assets/figma/nexus.svg';
     root.style.setProperty('--step-2', step2.toFixed(4));
     root.style.setProperty('--step-3', step3.toFixed(4));
     root.style.setProperty('--step-4', step4.toFixed(4));
+    // Card rotation: three overlapping eased ramps. While one is decelerating,
+    // the next is already accelerating, so total velocity stays non-zero from
+    // start to end — no parking at any beat.
+    // rotA/rotB do most of the work before the final flip (≈progress 0.50);
+    // rotB's smoothstep tail decelerates into the flip so the card eases off
+    // rather than carrying high angular velocity through it. rotC adds a small
+    // tail through the zoom and settles by 0.80 (start of the steps section),
+    // since the card isn't the focus once steps take over.
+    const rotA = ease(clamp01(progress / 0.30));
+    const rotB = ease(clamp01((progress - 0.15) / 0.50));
+    const rotC = ease(clamp01((progress - 0.30) / 0.60));
+    const cardRot = -2.41 + 4 * rotA + 10 * rotB + 6.41 * rotC;
+    root.style.setProperty('--card-rot', cardRot.toFixed(4));
+    // Flip drivers. --flip-rot is the first (front→back) flip; --zoom-rot
+    // (legacy name) is the second (back→front) flip that runs after the hold.
+    root.style.setProperty('--flip-rot', ease(flip).toFixed(4));
+    root.style.setProperty('--zoom-rot', ease(flipBack).toFixed(4));
   };
 
   window.addEventListener(
@@ -832,4 +860,54 @@ import nexusLogo from '../assets/figma/nexus.svg';
 
   window.addEventListener('resize', update);
   update();
+
+  // Subtle 3D hover tilt: cursor coords normalized relative to the card's own
+  // bounding rect, so ±1 ≈ one card half-dimension from center. Lerped per
+  // frame to glide instead of snapping.
+  if (window.matchMedia('(hover: hover)').matches) {
+    const card = document.querySelector('.card');
+    let targetX = 0;
+    let targetY = 0;
+    let smoothX = 0;
+    let smoothY = 0;
+    let hoverRaf: number | null = null;
+    const LERP = 0.1;
+
+    const tickHover = () => {
+      smoothX += (targetX - smoothX) * LERP;
+      smoothY += (targetY - smoothY) * LERP;
+      root.style.setProperty('--hover-x', smoothX.toFixed(4));
+      root.style.setProperty('--hover-y', smoothY.toFixed(4));
+      if (Math.abs(targetX - smoothX) > 0.001 || Math.abs(targetY - smoothY) > 0.001) {
+        hoverRaf = requestAnimationFrame(tickHover);
+      } else {
+        hoverRaf = null;
+      }
+    };
+
+    window.addEventListener(
+      'mousemove',
+      (e) => {
+        if (!(card instanceof HTMLElement)) return;
+        const rect = card.getBoundingClientRect();
+        const inside =
+          e.clientX >= rect.left &&
+          e.clientX <= rect.right &&
+          e.clientY >= rect.top &&
+          e.clientY <= rect.bottom;
+        if (inside) {
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          targetX = (e.clientX - cx) / (rect.width / 2);
+          targetY = (e.clientY - cy) / (rect.height / 2);
+        } else {
+          // Cursor left the card — ease back to flat.
+          targetX = 0;
+          targetY = 0;
+        }
+        if (hoverRaf === null) hoverRaf = requestAnimationFrame(tickHover);
+      },
+      { passive: true }
+    );
+  }
 </script>
