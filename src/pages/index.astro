@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import bgTexture from '../assets/figma/bg-texture.png';
 import leftNexusSketch from '../assets/figma/left-nexus-sketch.png';
 import fullNexusSketch from '../assets/figma/full-nexus-sketch.png';
+import rightNexusSketch from '../assets/figma/right-nexus-sketch.png';
 import spiral from '../assets/figma/spiral.png';
 import orb from '../assets/figma/orb.png';
 import cardBorder from '../assets/figma/card-border.png';
@@ -21,9 +22,13 @@ import bordBr from '../assets/figma/bord/br.png';
 import nexusLogo from '../assets/figma/nexus.svg';
 import infoStrip from '../assets/figma/info-strip.png';
 import infoPhoto from '../assets/figma/info-photo.png';
+import footerPainted from '../assets/figma/footer-painted.png';
+import bgPattern from '../assets/figma/bg-pattern.png';
 
 const infoBg = `url('${bgTexture.src}')`;
 const faqBg = `url('${bgTextureChalk.src}')`;
+const footerPaintedBg = `url('${footerPainted.src}')`;
+const patternBg = `url('${bgPattern.src}')`;
 ---
 
 <Base>
@@ -85,6 +90,22 @@ const faqBg = `url('${bgTextureChalk.src}')`;
           loading="eager"
         />
         <div class="stage4-frame">
+          <Image
+            class="stage4-strand stage4-strand--left"
+            src={leftNexusSketch}
+            alt=""
+            widths={[400, 612, 1200]}
+            sizes="(max-width: 800px) 50vw, 30vw"
+            loading="eager"
+          />
+          <Image
+            class="stage4-strand stage4-strand--right"
+            src={rightNexusSketch}
+            alt=""
+            widths={[400, 611, 1200]}
+            sizes="(max-width: 800px) 50vw, 30vw"
+            loading="eager"
+          />
           <div class="bord-frame">
             <div class="bord-slice bord-slice--tl"><Image src={bordTl} alt="" widths={[60, 120]} sizes="5vw" loading="eager" /></div>
             <div class="bord-slice bord-slice--top"><Image src={bordTop} alt="" widths={[300, 600, 900]} sizes="35vw" loading="eager" /></div>
@@ -175,7 +196,7 @@ const faqBg = `url('${bgTextureChalk.src}')`;
     </main>
   </div>
 
-  <section class="info" aria-labelledby="info-title" style={`--info-bg: ${infoBg}; --faq-bg: ${faqBg};`}>
+  <section class="info" aria-labelledby="info-title" style={`--info-bg: ${infoBg}; --faq-bg: ${faqBg}; --pattern-bg: ${patternBg};`}>
     <h2 id="info-title" class="sr-only">About Nexus</h2>
     <Image
       class="info__strip"
@@ -201,8 +222,8 @@ const faqBg = `url('${bgTextureChalk.src}')`;
           class="info-photo"
           src={infoPhoto}
           alt="A teenager at a hackathon, soldering an electronics project on a desk."
-          widths={[400, 545, 1090]}
-          sizes="(max-width: 800px) 88vw, 545px"
+          widths={[400, 413, 826]}
+          sizes="(max-width: 800px) 88vw, 413px"
           loading="lazy"
         />
       </div>
@@ -212,8 +233,8 @@ const faqBg = `url('${bgTextureChalk.src}')`;
           class="info-photo"
           src={infoPhoto}
           alt="A teenager building a hardware project at a Hack Club hackathon."
-          widths={[400, 545, 1090]}
-          sizes="(max-width: 800px) 88vw, 545px"
+          widths={[400, 413, 826]}
+          sizes="(max-width: 800px) 88vw, 413px"
           loading="lazy"
         />
         <article class="info-card">
@@ -241,10 +262,32 @@ const faqBg = `url('${bgTextureChalk.src}')`;
           class="info-photo"
           src={infoPhoto}
           alt="A teenager working on a creative hardware build during a hackathon."
-          widths={[400, 545, 1090]}
-          sizes="(max-width: 800px) 88vw, 545px"
+          widths={[400, 413, 826]}
+          sizes="(max-width: 800px) 88vw, 413px"
           loading="lazy"
         />
+      </div>
+    </div>
+
+    <div class="cta-bord-wrap">
+      <div class="cta-bord">
+        <div class="bord-slice cta-bord-slice cta-bord-slice--tl"><Image src={bordTl} alt="" widths={[60, 120]} sizes="5vw" loading="lazy" /></div>
+        <div class="bord-slice cta-bord-slice cta-bord-slice--top"><Image src={bordTop} alt="" widths={[300, 600, 1200]} sizes="80vw" loading="lazy" /></div>
+        <div class="bord-slice cta-bord-slice cta-bord-slice--tr"><Image src={bordTr} alt="" widths={[60, 120]} sizes="5vw" loading="lazy" /></div>
+        <div class="bord-slice cta-bord-slice cta-bord-slice--left"><Image src={bordLeft} alt="" widths={[60, 120]} sizes="5vw" loading="lazy" /></div>
+        <div class="bord-slice cta-bord-slice cta-bord-slice--center"><Image src={bordCenter} alt="" widths={[300, 600, 1200]} sizes="80vw" loading="lazy" /></div>
+        <div class="bord-slice cta-bord-slice cta-bord-slice--right"><Image src={bordRight} alt="" widths={[60, 120]} sizes="5vw" loading="lazy" /></div>
+        <div class="bord-slice cta-bord-slice cta-bord-slice--bl"><Image src={bordBl} alt="" widths={[60, 120]} sizes="5vw" loading="lazy" /></div>
+        <div class="bord-slice cta-bord-slice cta-bord-slice--bottom"><Image src={bordBottom} alt="" widths={[300, 600, 1200]} sizes="80vw" loading="lazy" /></div>
+        <div class="bord-slice cta-bord-slice cta-bord-slice--br"><Image src={bordBr} alt="" widths={[60, 120]} sizes="5vw" loading="lazy" /></div>
+        <div class="cta-bord__inner">
+          <h2 class="cta-bord__title">How Can I Go?</h2>
+          <p class="cta-bord__body">
+            You can get your ticket to Horizons Nexus by spending 35 hours making projects like games, websites, CLIs, and more. You can do this through our Horizons platform.
+          </p>
+          <a class="cta-bord__btn" href="https://horizons.hackclub.com" target="_blank" rel="noopener">Sign Up &rarr;</a>
+          <p class="cta-bord__fineprint">Horizons Nexus is only open to anyone 13&ndash;18. All skill levels are welcome.</p>
+        </div>
       </div>
     </div>
 
@@ -252,19 +295,80 @@ const faqBg = `url('${bgTextureChalk.src}')`;
       <h2 class="faq__title">FAQ</h2>
       <div class="faq__grid">
         <article class="info-card faq__card">
-          <h3 class="info-card__title">Eligibility</h3>
+          <h3 class="info-card__title">Who can qualify?</h3>
+          <p class="info-card__body">Horizons Nexus is open to anyone 13&ndash;18, regardless of skill level.</p>
+        </article>
+        <article class="info-card faq__card">
+          <h3 class="info-card__title">How do I qualify?</h3>
           <p class="info-card__body">
-            Anyone 13&ndash;18 is welcome! If you&rsquo;re in middle school or a gap year student, check in with us at <a class="info-link" href="mailto:apocalypse@hackclub.com">apocalypse@hackclub.com</a>. Don&rsquo;t forget to bring an ID that includes a photo! Read our policy <a class="info-link" href="https://apocalypse.hackclub.com/id" target="_blank" rel="noopener">here</a>.
+            To qualify for Horizons Nexus, you&rsquo;ll need to complete 35 hours making projects like games, websites, CLIs, and more. You can qualify and get your ticket to Nexus through <a class="info-link" href="https://horizons.hackclub.com" target="_blank" rel="noopener">Horizons</a>.
           </p>
         </article>
         <article class="info-card faq__card">
-          <h3 class="info-card__title">Is this free?</h3>
+          <h3 class="info-card__title">What if my parents are concerned?</h3>
           <p class="info-card__body">
-            Yep. Attending costs a grand total of $0. Zilch. Nada. Nothing. From meals to mini-events, Nexus is universally accessible.
+            We&rsquo;re here to help! Feel free to reach out to <a class="info-link" href="mailto:horizons@hackclub.com">horizons@hackclub.com</a> and we&rsquo;d love to answer questions or hop on a call. We&rsquo;ll also be releasing a parent&rsquo;s guide slightly further down the road.
+          </p>
+        </article>
+        <article class="info-card faq__card">
+          <h3 class="info-card__title">Is this free? and legit?</h3>
+          <p class="info-card__body">
+            Yep, it&rsquo;s free! Hack Club is a 501(c)3 non-profit organization, and we&rsquo;ve run a bunch of events like this in the past.
+          </p>
+        </article>
+        <article class="info-card faq__card">
+          <h3 class="info-card__title">Will you cover travel?</h3>
+          <p class="info-card__body">
+            We offer travel grants to those who build additional projects for Horizons! We also offer need-based stipends.
+          </p>
+        </article>
+        <article class="info-card faq__card">
+          <h3 class="info-card__title">Where do I reach out for questions?</h3>
+          <p class="info-card__body">
+            You can email us at <a class="info-link" href="mailto:horizons@hackclub.com">horizons@hackclub.com</a> or the #horizons-help channel in Slack.
           </p>
         </article>
       </div>
     </div>
+  </section>
+
+  <section class="footer-painted" aria-label="Sign up" style={`--footer-painted-bg: ${footerPaintedBg}; --faq-bg: ${faqBg}; --pattern-bg: ${patternBg};`}>
+    <div class="closing-cta">
+      <h2 class="closing-cta__title">See you at Nexus!</h2>
+      <a class="closing-cta__btn" href="https://horizons.hackclub.com" target="_blank" rel="noopener">Sign Up Now &rarr;</a>
+    </div>
+
+    <footer class="footer-content">
+      <p class="footer-content__tagline">
+        <strong>A project by Hack Club</strong><br />
+        With love from the Horizons team.
+      </p>
+      <p class="footer-content__about">
+        Hack Club is a 501(c)(3) nonprofit and network of 60k+ technical high schoolers. We believe you learn best by building so we&rsquo;re creating community and providing grants so you can make awesome projects. In the past few years, we&rsquo;ve partnered with GitHub to run <a class="footer-link" href="https://summer.hackclub.com/" target="_blank" rel="noopener">Summer of Making</a>, hosted the <a class="footer-link" href="https://github.com/hackclub/the-hacker-zephyr" target="_blank" rel="noopener">world&rsquo;s longest hackathon on land</a>, and ran <a class="footer-link" href="https://www.youtube.com/watch?v=QvCoISXfcE8" target="_blank" rel="noopener">Canada&rsquo;s largest high school hackathon</a>.
+      </p>
+      <nav class="footer-content__links" aria-label="Footer">
+        <div class="footer-col">
+          <h4 class="footer-col__header">HACK CLUB</h4>
+          <a class="footer-col__link" href="https://hackclub.com/philosophy/" target="_blank" rel="noopener">Our Philosophy</a>
+          <a class="footer-col__link" href="https://hackclub.com/team/" target="_blank" rel="noopener">Team &amp; Board</a>
+          <a class="footer-col__link" href="https://hackclub.com/donate/" target="_blank" rel="noopener">Donate</a>
+          <a class="footer-col__link" href="https://hackclub.com/press/" target="_blank" rel="noopener">Press Inquiries</a>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col__header">HORIZONS</h4>
+          <a class="footer-col__link footer-col__link--strong" href="https://horizons.hackclub.com" target="_blank" rel="noopener">Sign up now</a>
+          <a class="footer-col__link" href="https://horizons.hackclub.com/faq" target="_blank" rel="noopener">FAQ</a>
+          <a class="footer-col__link" href="https://guides.horizons.hackclub.com/" target="_blank" rel="noopener">Guides</a>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col__header">COMMUNITY</h4>
+          <a class="footer-col__link" href="https://hackclub.com/slack/" target="_blank" rel="noopener">Slack</a>
+          <a class="footer-col__link" href="https://jams.hackclub.com/" target="_blank" rel="noopener">Jams</a>
+          <a class="footer-col__link" href="https://workshops.hackclub.com/" target="_blank" rel="noopener">Workshops</a>
+          <a class="footer-col__link" href="https://hackclub.com/conduct/" target="_blank" rel="noopener">Code of Conduct</a>
+        </div>
+      </nav>
+    </footer>
   </section>
 </Base>
 
@@ -272,7 +376,7 @@ const faqBg = `url('${bgTextureChalk.src}')`;
   .scroll-shell {
     position: relative;
     width: 100%;
-    height: 900svh;
+    height: 1000svh;
   }
 
   .hero {
@@ -429,6 +533,22 @@ const faqBg = `url('${bgTextureChalk.src}')`;
     display: block;
     opacity: var(--reveal, 0);
   }
+
+  .stage4-frame :global(.stage4-strand) {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 41.7%; /* 585.07 / 1403 — matches Figma sketch frame */
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    opacity: var(--reveal, 0);
+  }
+
+  .stage4-frame :global(.stage4-strand--left)  { left: -18.1%; }   /* -254 / 1403 */
+  .stage4-frame :global(.stage4-strand--right) { right: -18.04%; } /* -253.14 / 1403 */
 
   .stage4-frame {
     position: absolute;
@@ -882,9 +1002,26 @@ const faqBg = `url('${bgTextureChalk.src}')`;
   .info {
     position: relative;
     width: 100%;
-    background: var(--info-bg) center / cover no-repeat, #2a1f17;
+    background: var(--info-bg) center / cover no-repeat fixed, #2a1f17;
     color: #fff;
-    padding-bottom: clamp(60px, 9vw, 130px);
+  }
+
+  .info::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--pattern-bg);
+    background-repeat: repeat;
+    background-position: left top;
+    background-size: 140px auto;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .info > * {
+    position: relative;
+    z-index: 1;
   }
 
   .info :global(.info__strip) {
@@ -895,47 +1032,65 @@ const faqBg = `url('${bgTextureChalk.src}')`;
     object-position: center;
   }
 
+  /* Info rows — Figma frame 2356:747 is 954×878 at x=224, y=95. 3 rows of
+     954×276 with 25px gap. Each row: text card 512×276 (24px padding) + 29px
+     gap + photo 413×276. Title 24px Delius Unicase, body 16px Delius. */
   .info__rows {
-    --row-gap: clamp(16px, 2.35vw, 33px);
-    max-width: 1265px;
+    width: 100%;
+    max-width: 954px;
     margin: 0 auto;
-    padding: clamp(28px, 4.4vw, 62px) clamp(20px, 4.9vw, 69px) 0;
+    padding: clamp(40px, 5vw, 70px) 0 0;
     display: flex;
     flex-direction: column;
-    gap: var(--row-gap);
+    gap: clamp(14px, 1.78vw, 25px);
+    box-sizing: border-box;
+  }
+
+  /* Safety inset only when the viewport is narrower than the 954 frame */
+  @media (max-width: 1000px) {
+    .info__rows {
+      padding-left: clamp(16px, 2.5vw, 24px);
+      padding-right: clamp(16px, 2.5vw, 24px);
+    }
   }
 
   .info-row {
     display: grid;
-    grid-template-columns: 693fr 27fr 545fr;
     align-items: stretch;
     gap: 0;
   }
 
-  .info-row--text-left .info-card { grid-column: 1; }
+  /* Card stays 512fr and photo stays 413fr regardless of side. */
+  .info-row--text-left  { grid-template-columns: 512fr 29fr 413fr; }
+  .info-row--text-right { grid-template-columns: 413fr 29fr 512fr; }
+
+  .info-row--text-left .info-card  { grid-column: 1; }
   .info-row--text-left .info-photo { grid-column: 3; }
 
   .info-row--text-right .info-photo { grid-column: 1; }
-  .info-row--text-right .info-card { grid-column: 3; }
+  .info-row--text-right .info-card  { grid-column: 3; }
 
   .info-card {
     background: #151515;
     color: #fff;
-    padding: clamp(20px, 2.3vw, 32px);
+    padding: clamp(18px, 1.71vw, 24px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: clamp(14px, 1.7vw, 24px);
-    min-height: clamp(220px, 25.9vw, 363px);
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: clamp(10px, 1.14vw, 16px);
+    min-height: clamp(220px, 19.67vw, 276px);
+    text-align: left;
   }
 
   .info-card__title {
     margin: 0;
     font-family: 'Delius', system-ui, sans-serif;
     font-weight: 400;
-    font-size: clamp(24px, 2.57vw, 36px);
+    font-size: clamp(20px, 1.71vw, 24px);
     line-height: 1.1;
     color: #fff;
+    text-align: left;
   }
 
   .info-card__title--unicase {
@@ -946,48 +1101,345 @@ const faqBg = `url('${bgTextureChalk.src}')`;
     margin: 0;
     font-family: 'Delius', system-ui, sans-serif;
     font-weight: 400;
-    font-size: clamp(16px, 1.71vw, 24px);
-    line-height: 1.35;
+    font-size: clamp(14px, 1.14vw, 16px);
+    line-height: 1.4;
     color: #fff;
+    text-align: left;
   }
 
   .info-photo {
     display: block;
     width: 100%;
     height: 100%;
-    min-height: clamp(220px, 25.9vw, 363px);
+    min-height: clamp(220px, 19.67vw, 276px);
     object-fit: cover;
     object-position: center;
     user-select: none;
   }
 
+  /* FAQ — Figma: 958px wide grid, 467×200 cards, 24px gap, 48px title */
   .faq {
     position: relative;
-    margin-top: clamp(40px, 6.7vw, 95px);
-    background: var(--faq-bg) center / cover no-repeat, #0a0a0a;
-    padding: clamp(40px, 5.3vw, 75px) clamp(20px, 4.9vw, 69px) clamp(60px, 9vw, 130px);
+    margin-top: 0;
+    background: var(--faq-bg) center / cover no-repeat fixed, #0a0a0a;
+    padding: clamp(60px, 8.5vw, 120px) clamp(20px, 4.9vw, 69px) clamp(20px, 2.85vw, 40px);
+  }
+
+  .faq::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--pattern-bg);
+    background-repeat: repeat;
+    background-position: left top;
+    background-size: 140px auto;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .faq > * {
+    position: relative;
+    z-index: 1;
   }
 
   .faq__title {
-    margin: 0 auto clamp(28px, 6.4vw, 90px);
+    margin: 0 auto clamp(16px, 2vw, 28px);
     text-align: center;
     font-family: 'Delius', system-ui, sans-serif;
     font-weight: 400;
-    font-size: clamp(36px, 3.42vw, 48px);
+    font-size: clamp(32px, 3.42vw, 48px);
     line-height: 1;
     color: #fff;
   }
 
   .faq__grid {
-    max-width: 1117px;
+    max-width: 958px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(20px, 2.28vw, 32px);
+    gap: clamp(16px, 1.71vw, 24px);
   }
 
   .faq__card {
-    min-height: clamp(220px, 23.1vw, 324px);
+    min-height: clamp(160px, 14.26vw, 200px);
+  }
+
+  /* CTA bord — Figma: 1164×480, centered, sits between info rows and FAQ */
+  .cta-bord-wrap {
+    max-width: 1164px;
+    margin: 0 auto;
+    padding: clamp(60px, 8.5vw, 120px) clamp(20px, 4.9vw, 69px) 0;
+  }
+
+  .cta-bord {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1164 / 480;
+    color: #fff;
+  }
+
+  .cta-bord-slice :global(img) {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: fill;
+  }
+
+  /* 9-slice frame for the 1164×480 wider bord */
+  .cta-bord-slice--tl     { top: 0;      left: 0;     width: 5.18%;  height: 13.19%; }
+  .cta-bord-slice--top    { top: 0;      left: 5.18%; right: 5.18%; height: 13.19%; }
+  .cta-bord-slice--tr     { top: 0;      right: 0;    width: 5.18%;  height: 13.19%; }
+  .cta-bord-slice--left   { top: 13.19%; bottom: 11.96%; left: 0;    width: 5.18%; }
+  .cta-bord-slice--center { top: 13.19%; left: 5.18%; right: 5.18%; bottom: 11.96%; }
+  .cta-bord-slice--right  { top: 13.19%; bottom: 11.96%; right: 0;   width: 5.18%; }
+  .cta-bord-slice--bl     { bottom: 0;   left: 0;     width: 5.18%;  height: 11.96%; }
+  .cta-bord-slice--bottom { bottom: 0;   left: 5.18%; right: 5.18%; height: 11.96%; }
+  .cta-bord-slice--br     { bottom: 0;   right: 0;    width: 5.18%;  height: 11.96%; }
+
+  .cta-bord__inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 1.14vw, 16px);
+    padding: clamp(30px, 4.49vw, 63px) clamp(20px, 6.27vw, 88px);
+    text-align: center;
+  }
+
+  .cta-bord__title {
+    margin: 0;
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, 3.42vw, 48px);
+    line-height: 1;
+  }
+
+  .cta-bord__body {
+    margin: 0;
+    max-width: 787px;
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(16px, 1.71vw, 24px);
+    line-height: 1.35;
+  }
+
+  .cta-bord__btn {
+    display: inline-block;
+    margin-top: clamp(4px, 0.71vw, 10px);
+    padding: clamp(10px, 1.14vw, 16px) clamp(16px, 1.71vw, 24px);
+    border: 2px solid #fff;
+    border-radius: clamp(12px, 1.14vw, 16px);
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(18px, 1.71vw, 24px);
+    line-height: 1;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 150ms ease;
+  }
+
+  .cta-bord__btn:hover,
+  .cta-bord__btn:focus-visible {
+    transform: scale(1.04);
+  }
+
+  .cta-bord__btn:active {
+    transform: scale(0.97);
+    transition-duration: 80ms;
+  }
+
+  .cta-bord__fineprint {
+    margin: clamp(4px, 0.57vw, 8px) 0 0;
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(13px, 1.14vw, 16px);
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  /* Footer — Figma frame 2361:749. Painted brush-stroke background spans the
+     full 1404×1874 frame. "See you at Nexus!" and the Sign Up Now button sit
+     in the upper portion (title at ~37%, button at ~42% of bg height). */
+  /* Footer — Figma frame 2361:749 (1404×1244). Painted artwork rendered
+     via a ::before pseudo at top:-18.01%, height:150.64% so the white top
+     of the source PNG is cropped — matches Figma's image transform. White
+     fallback fills the section if the image fails to load. */
+  .footer-painted {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1404 / 1244;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--faq-bg) center / cover no-repeat fixed, #0a0a0a;
+  }
+
+  /* Pattern layer — sits between the chalk bg and the painted strokes. */
+  .footer-painted::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--pattern-bg);
+    background-repeat: repeat;
+    background-position: left top;
+    background-size: 140px auto;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Painted rainbow strokes — drawn over the pattern. */
+  .footer-painted::after {
+    content: '';
+    position: absolute;
+    top: -18.01%;
+    left: 0;
+    width: 100%;
+    height: 150.64%;
+    background-image: var(--footer-painted-bg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .closing-cta {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(14px, 2.0vw, 28px);
+    text-align: center;
+    z-index: 2;
+  }
+
+  /* Footer content — Figma frame 2365:751. Sits at x=110, y=2927 within
+     the 1404×1244 painted section (left-aligned in the lower portion).
+     Width 755px, 28px gap between blocks, 3-column links grid. */
+  .footer-content {
+    position: absolute;
+    top: 58%;
+    left: 7.91%;  /* 111/1404 */
+    width: 53.78%;/* 755/1404 */
+    display: flex;
+    flex-direction: column;
+    gap: clamp(22px, 2.85vw, 40px);
+    color: #fff;
+    z-index: 2;
+  }
+
+  .footer-content__tagline {
+    margin: 0;
+    font-family: 'Roboto Flex', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(16px, 1.71vw, 24px);
+    line-height: 1.2;
+  }
+
+  .footer-content__tagline strong {
+    font-weight: 600;
+  }
+
+  .footer-content__about {
+    margin: 0;
+    font-family: 'Roboto Flex', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(13px, 1.14vw, 16px);
+    line-height: 1.4;
+  }
+
+  .footer-content__links {
+    display: grid;
+    grid-template-columns: 191fr 191fr 228fr;
+    gap: clamp(20px, 2.28vw, 32px);
+    margin-top: clamp(4px, 0.8vw, 12px);
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(6px, 0.85vw, 12px);
+  }
+
+  .footer-col__header {
+    margin: 0;
+    font-family: 'Roboto Flex', system-ui, sans-serif;
+    font-weight: 850;
+    font-stretch: 151%;
+    font-variation-settings: 'wdth' 151;
+    font-size: clamp(18px, 1.71vw, 24px);
+    line-height: 1;
+    color: #fff;
+  }
+
+  .footer-col__link {
+    font-family: 'Roboto Flex', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(15px, 1.43vw, 20px);
+    line-height: 1.2;
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 150ms ease;
+  }
+
+  .footer-col__link:hover,
+  .footer-col__link:focus-visible {
+    opacity: 0.75;
+  }
+
+  .footer-col__link--strong {
+    font-weight: 600;
+  }
+
+  .footer-link {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    text-underline-offset: 0.18em;
+  }
+
+  .footer-link:hover,
+  .footer-link:focus-visible {
+    opacity: 0.85;
+  }
+
+  .closing-cta__title {
+    margin: 0;
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(32px, 3.42vw, 48px);
+    line-height: 1;
+    color: #fff;
+  }
+
+  .closing-cta__btn {
+    display: inline-block;
+    padding: clamp(16px, 1.71vw, 24px) clamp(20px, 2.28vw, 32px);
+    border: 2px solid #fff;
+    border-radius: clamp(12px, 1.14vw, 16px);
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(24px, 2.57vw, 36px);
+    line-height: 1;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 150ms ease;
+  }
+
+  .closing-cta__btn:hover,
+  .closing-cta__btn:focus-visible {
+    transform: scale(1.04);
+  }
+
+  .closing-cta__btn:active {
+    transform: scale(0.97);
+    transition-duration: 80ms;
   }
 
   .info-link {
@@ -1024,12 +1476,45 @@ const faqBg = `url('${bgTextureChalk.src}')`;
 
     .info-photo {
       min-height: 0;
-      aspect-ratio: 545 / 363;
+      aspect-ratio: 413 / 276;
       height: auto;
     }
 
     .faq__grid {
       grid-template-columns: 1fr;
+    }
+
+    .cta-bord {
+      aspect-ratio: auto;
+      min-height: 360px;
+    }
+
+    .cta-bord__inner {
+      padding: clamp(40px, 14vw, 80px) clamp(24px, 8vw, 48px);
+    }
+
+    .footer-painted {
+      aspect-ratio: auto;
+    }
+
+    .closing-cta {
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
+      padding: clamp(80px, 18vw, 140px) 24px clamp(20px, 5vw, 40px);
+    }
+
+    .footer-content {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: 100%;
+      padding: clamp(20px, 5vw, 40px) clamp(20px, 6vw, 48px) clamp(40px, 12vw, 90px);
+    }
+
+    .footer-content__links {
+      grid-template-columns: 1fr 1fr;
     }
   }
 </style>
@@ -1055,22 +1540,29 @@ const faqBg = `url('${bgTextureChalk.src}')`;
     }
     const scrolled = Math.max(0, Math.min(range, -rect.top));
     const progress = scrolled / range;
+    // Compress the choreography into the first 80% of scroll progress; the
+    // remaining 20% holds the final state (last step card stays visible) before
+    // the info section scrolls in.
+    const p = Math.min(progress / 0.80, 1);
     // 4 transitions of 20% each separated by 4% holds.
-    const phase1 = clamp01(progress / 0.2);
-    const phase2 = clamp01((progress - 0.24) / 0.2);
-    const phase3 = clamp01((progress - 0.48) / 0.2);
-    const phase4 = clamp01((progress - 0.72) / 0.28);
+    const phase1 = clamp01(p / 0.2);
+    const phase2 = clamp01((p - 0.24) / 0.2);
+    const phase3 = clamp01((p - 0.48) / 0.2);
+    const phase4 = clamp01((p - 0.72) / 0.28);
     const tilt = clamp01(phase2 / 0.6);
     // Choreography: 1) "this summer" front showing, 2) flip to back,
     // 3) hold on "and you're invited" so it can be read, 4) flip back to front,
     // 5) midway through that flip (rotateY≈270°, black side visible again) the
     // zoom kicks in. Reveal starts as the zoom is finishing up.
-    const flip = clamp01((progress - 0.30) / 0.10);     // front → back
-    const flipBack = clamp01((progress - 0.50) / 0.10); // back → front
-    const zoom = clamp01((progress - 0.55) / 0.12);     // starts mid-flipBack
-    const reveal = clamp01((progress - 0.62) / 0.10);
+    const flip = clamp01((p - 0.30) / 0.10);     // front → back
+    const flipBack = clamp01((p - 0.50) / 0.10); // back → front
+    const zoom = clamp01((p - 0.55) / 0.12);     // starts mid-flipBack
+    const reveal = clamp01((p - 0.62) / 0.10);
     const bordOut = clamp01(phase4 / 0.36);
-    const stepsIn = clamp01((phase4 - 0.25) / 0.75);
+    // Step timeline runs in raw progress space (not p-space) so it can use the
+    // taller scroll-shell directly. Steps span progress 0.63 → 0.92 (≈290svh
+    // of scroll on a 1000svh range), then a ≈80svh hold to the end.
+    const stepsIn = clamp01((progress - 0.63) / 0.29);
     // Each step fades over 0.10 of stepsIn with a 0.20 hold before the next.
     const step1 = clamp01(stepsIn / 0.10);
     const step2 = clamp01((stepsIn - 0.30) / 0.10);
@@ -1099,9 +1591,9 @@ const faqBg = `url('${bgTextureChalk.src}')`;
     // rather than carrying high angular velocity through it. rotC adds a small
     // tail through the zoom and settles by 0.80 (start of the steps section),
     // since the card isn't the focus once steps take over.
-    const rotA = ease(clamp01(progress / 0.30));
-    const rotB = ease(clamp01((progress - 0.15) / 0.50));
-    const rotC = ease(clamp01((progress - 0.30) / 0.60));
+    const rotA = ease(clamp01(p / 0.30));
+    const rotB = ease(clamp01((p - 0.15) / 0.50));
+    const rotC = ease(clamp01((p - 0.30) / 0.60));
     const cardRot = -2.41 + 4 * rotA + 10 * rotB + 6.41 * rotC;
     root.style.setProperty('--card-rot', cardRot.toFixed(4));
     // Flip drivers. --flip-rot is the first (front→back) flip; --zoom-rot
