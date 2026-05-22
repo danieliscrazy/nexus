@@ -21,9 +21,17 @@ import bordBottom from '../assets/figma/bord/bottom.png';
 import bordBr from '../assets/figma/bord/br.png';
 import nexusLogo from '../assets/figma/nexus.svg';
 import infoStrip from '../assets/figma/info-strip.png';
-import infoPhoto from '../assets/figma/info-photo.png';
+import infoPhoto1 from '../assets/figma/info/info-photo-1.png';
+import infoPhoto2 from '../assets/figma/info/info-photo-2.png';
+import infoPhoto3 from '../assets/figma/info/info-photo-3.png';
 import footerPainted from '../assets/figma/footer-painted.png';
 import bgPattern from '../assets/figma/bg-pattern.png';
+import shipLogo from '../assets/figma/hackathons/ship-logo.png';
+import shipPhoto from '../assets/figma/hackathons/ship-photo.png';
+import apocalypseLogo from '../assets/figma/hackathons/apocalypse-logo.png';
+import apocalypsePhoto from '../assets/figma/hackathons/apocalypse-photo.png';
+import scrapyardLogo from '../assets/figma/hackathons/scrapyard-logo.png';
+import scrapyardPhoto from '../assets/figma/hackathons/scrapyard-photo.png';
 
 const infoBg = `url('${bgTexture.src}')`;
 const faqBg = `url('${bgTextureChalk.src}')`;
@@ -228,10 +236,12 @@ const patternBg = `url('${bgPattern.src}')`;
       loading="lazy"
     />
 
+    <h2 class="section-title">What&rsquo;s a Hackathon?</h2>
+
     <div class="info__rows">
       <div class="info-row info-row--text-left">
         <article class="info-card">
-          <h3 class="info-card__title info-card__title--unicase">What&rsquo;s a hackathon?</h3>
+          <h3 class="info-card__title info-card__title--unicase">A social coding marathon!</h3>
           <p class="info-card__body">
             A social coding marathon! Imagine a weekend where teenagers come together to code projects for fun&mdash;however goofy or janky&mdash;and share them with each other.
           </p>
@@ -241,7 +251,7 @@ const patternBg = `url('${bgPattern.src}')`;
         </article>
         <Image
           class="info-photo"
-          src={infoPhoto}
+          src={infoPhoto1}
           alt="A teenager at a hackathon, soldering an electronics project on a desk."
           widths={[400, 413, 826]}
           sizes="(max-width: 800px) 88vw, 413px"
@@ -252,7 +262,7 @@ const patternBg = `url('${bgPattern.src}')`;
       <div class="info-row info-row--text-right">
         <Image
           class="info-photo"
-          src={infoPhoto}
+          src={infoPhoto2}
           alt="A teenager building a hardware project at a Hack Club hackathon."
           widths={[400, 413, 826]}
           sizes="(max-width: 800px) 88vw, 413px"
@@ -281,7 +291,7 @@ const patternBg = `url('${bgPattern.src}')`;
         </article>
         <Image
           class="info-photo"
-          src={infoPhoto}
+          src={infoPhoto3}
           alt="A teenager working on a creative hardware build during a hackathon."
           widths={[400, 413, 826]}
           sizes="(max-width: 800px) 88vw, 413px"
@@ -289,6 +299,39 @@ const patternBg = `url('${bgPattern.src}')`;
         />
       </div>
     </div>
+
+    <section class="hackathons" aria-labelledby="hackathons-title">
+      <h2 id="hackathons-title" class="section-title">We&rsquo;ve done this before</h2>
+      <div class="hackathons__grid">
+        <a class="hackathon-card" href="https://www.youtube.com/watch?v=uXWMr0gdLJA" target="_blank" rel="noopener">
+          <div class="hackathon-card__logo hackathon-card__logo--ship">
+            <Image src={shipLogo} alt="Shipwrecked" widths={[150, 300]} sizes="134px" loading="lazy" />
+          </div>
+          <div class="hackathon-card__photo">
+            <Image src={shipPhoto} alt="" widths={[300, 600]} sizes="(max-width: 800px) 88vw, 252px" loading="lazy" />
+          </div>
+          <p class="hackathon-card__caption">A hackathon on an island in the Boston Harbor!</p>
+        </a>
+        <a class="hackathon-card" href="https://www.youtube.com/watch?v=QvCoISXfcE8" target="_blank" rel="noopener">
+          <div class="hackathon-card__logo hackathon-card__logo--apocalypse">
+            <Image src={apocalypseLogo} alt="Apocalypse" widths={[300, 600]} sizes="252px" loading="lazy" />
+          </div>
+          <div class="hackathon-card__photo">
+            <Image src={apocalypsePhoto} alt="" widths={[300, 600, 1280]} sizes="(max-width: 800px) 88vw, 252px" loading="lazy" />
+          </div>
+          <p class="hackathon-card__caption">Canada&rsquo;s largest high school hackathon!</p>
+        </a>
+        <a class="hackathon-card" href="https://www.youtube.com/watch?v=8iM1W8kXrQA" target="_blank" rel="noopener">
+          <div class="hackathon-card__logo hackathon-card__logo--scrapyard">
+            <Image src={scrapyardLogo} alt="Scrapyard" widths={[200, 400]} sizes="176px" loading="lazy" />
+          </div>
+          <div class="hackathon-card__photo">
+            <Image src={scrapyardPhoto} alt="" widths={[300, 600, 1280]} sizes="(max-width: 800px) 88vw, 252px" loading="lazy" />
+          </div>
+          <p class="hackathon-card__caption">A hackathon about building the stupidest projects ever</p>
+        </a>
+      </div>
+    </section>
 
     <div class="faq">
       <h2 class="faq__title">FAQ</h2>
@@ -306,7 +349,7 @@ const patternBg = `url('${bgPattern.src}')`;
         <article class="info-card faq__card">
           <h3 class="info-card__title">What if my parents are concerned?</h3>
           <p class="info-card__body">
-            We&rsquo;re here to help! Feel free to reach out to <a class="info-link" href="mailto:horizons@hackclub.com">horizons@hackclub.com</a> and we&rsquo;d love to answer questions or hop on a call. We&rsquo;ll also be releasing a parent&rsquo;s guide slightly further down the road.
+            We&rsquo;re here to help! Feel free to reach out to <a class="info-link" href="mailto:horizons@hackclub.com">horizons@hackclub.com</a> and we&rsquo;d love to answer questions or hop on a call. We also have a <a class="info-link" href="https://docs.google.com/document/d/1qVeFyVvbuwMY1eWkh01GUW5gtUrU3YOI0xhTwCn78jg/edit?usp=sharing" target="_blank" rel="noopener">parents guide</a>!
           </p>
         </article>
         <article class="info-card faq__card">
@@ -328,6 +371,7 @@ const patternBg = `url('${bgPattern.src}')`;
           </p>
         </article>
       </div>
+      <a class="faq__more" href="https://horizons.hackclub.com/faq" target="_blank" rel="noopener">More FAQ questions</a>
     </div>
   </section>
 
@@ -1167,7 +1211,7 @@ const patternBg = `url('${bgPattern.src}')`;
     width: 100%;
     max-width: 954px;
     margin: 0 auto;
-    padding: clamp(40px, 5vw, 70px) 0 0;
+    padding: clamp(16px, 2.56vw, 36px) 0 0;
     display: flex;
     flex-direction: column;
     gap: clamp(14px, 1.78vw, 25px);
@@ -1245,12 +1289,110 @@ const patternBg = `url('${bgPattern.src}')`;
     user-select: none;
   }
 
-  /* FAQ — Figma: 958px wide grid, 467×200 cards, 24px gap, 48px title */
+  /* Shared 48px Delius section heading used by "What's a Hackathon?",
+     "We've done this before", and the FAQ title in the Figma. The 84px top
+     padding handles the inter-section gap (Figma: last content → next title). */
+  .section-title {
+    margin: 0 auto;
+    padding: clamp(56px, 5.98vw, 84px) 0 0;
+    text-align: center;
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(32px, 3.42vw, 48px);
+    line-height: 1;
+    color: #fff;
+  }
+
+  /* "We've done this before" — Figma frame 2384:501 (1170×440). Three 300px
+     hackathon cards laid out with a 34px gap; each card has a logo, a photo
+     and a centered caption. Top padding=0 lets the .section-title's own 84px
+     padding control the gap from the previous section. */
+  .hackathons {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 2.5vw, 24px);
+    box-sizing: border-box;
+  }
+
+  /* 37px gap from "We've done this before" title to hackathon cards (Figma). */
+  .hackathons .section-title {
+    padding-bottom: clamp(20px, 2.63vw, 37px);
+  }
+
+  .hackathons__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(16px, 2.42vw, 34px);
+    align-items: stretch;
+  }
+
+  .hackathon-card {
+    background: #151515;
+    color: #fff;
+    padding: clamp(18px, 1.71vw, 24px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(16px, 1.71vw, 24px);
+    text-decoration: none;
+  }
+
+  .hackathon-card__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: clamp(60px, 6vw, 84px);
+  }
+
+  .hackathon-card__logo :global(img) {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .hackathon-card__photo {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    outline: 2px solid transparent;
+    outline-offset: 0;
+    transform-origin: center;
+    transition: transform 200ms ease, outline-color 200ms ease;
+  }
+
+  .hackathon-card:hover .hackathon-card__photo,
+  .hackathon-card:focus-visible .hackathon-card__photo {
+    transform: scale(1.04);
+    outline-color: #fff;
+  }
+
+  .hackathon-card__photo :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hackathon-card__caption {
+    margin: 0;
+    font-family: 'Bricolage Grotesque', 'Roboto Flex', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(14px, 1.14vw, 16px);
+    line-height: 1.3;
+    text-align: center;
+    color: #fff;
+  }
+
+  /* FAQ — Figma: 958px wide grid, 467×200 cards, 24px gap, 48px title.
+     Top padding=0 lets the .faq__title's own 84px padding handle the gap
+     from the hackathon cards above. */
   .faq {
     position: relative;
     margin-top: 0;
     background: var(--faq-bg) center / cover no-repeat fixed, #0a0a0a;
-    padding: clamp(60px, 8.5vw, 120px) clamp(20px, 4.9vw, 69px) clamp(20px, 2.85vw, 40px);
+    padding: 0 clamp(20px, 4.9vw, 69px) clamp(20px, 2.85vw, 40px);
   }
 
   .faq::before {
@@ -1271,8 +1413,11 @@ const patternBg = `url('${bgPattern.src}')`;
     z-index: 1;
   }
 
+  /* 84px top padding matches .section-title so FAQ has consistent inter-section
+     spacing; 36px bottom margin matches Figma title-to-grid gap. */
   .faq__title {
-    margin: 0 auto clamp(16px, 2vw, 28px);
+    margin: 0 auto clamp(20px, 2.56vw, 36px);
+    padding-top: clamp(56px, 5.98vw, 84px);
     text-align: center;
     font-family: 'Delius', system-ui, sans-serif;
     font-weight: 400;
@@ -1291,6 +1436,27 @@ const patternBg = `url('${bgPattern.src}')`;
 
   .faq__card {
     min-height: clamp(160px, 14.26vw, 200px);
+  }
+
+  /* "More FAQ questions" CTA below the grid — Figma node 2378:69 */
+  .faq__more {
+    display: block;
+    max-width: 958px;
+    margin: clamp(16px, 1.71vw, 24px) auto 0;
+    padding: clamp(18px, 1.71vw, 24px);
+    background: #151515;
+    color: #fff;
+    text-align: center;
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(18px, 1.71vw, 24px);
+    line-height: 1;
+    transition: opacity 150ms ease;
+  }
+
+  .faq__more:hover,
+  .faq__more:focus-visible {
+    opacity: 0.85;
   }
 
   /* Footer — Figma frame 2361:749. Painted brush-stroke background spans the
@@ -1514,6 +1680,10 @@ const patternBg = `url('${bgPattern.src}')`;
     }
 
     .faq__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hackathons__grid {
       grid-template-columns: 1fr;
     }
 
