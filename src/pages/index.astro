@@ -189,6 +189,8 @@ const patternBg = `url('${bgPattern.src}')`;
                     method="get"
                     target="_blank"
                   >
+                    <!-- TEMP: email input hidden. Restore by removing `hidden`
+                         and reverting the <a> back to <button type="submit">. -->
                     <input
                       type="email"
                       name="email"
@@ -196,8 +198,9 @@ const patternBg = `url('${bgPattern.src}')`;
                       placeholder="me@gmail.com"
                       aria-label="Email address"
                       autocomplete="email"
+                      hidden
                     />
-                    <button type="submit" class="card-button">Sign Up &rarr;</button>
+                    <a class="card-button" href="https://horizons.hackclub.com" target="_blank" rel="noopener">Sign Up &rarr;</a>
                   </form>
                   <p class="card-scroll">SCROLL TO READ MORE...</p>
                 </div>
@@ -802,18 +805,21 @@ const patternBg = `url('${bgPattern.src}')`;
     padding: clamp(10px, 1.14vw, 16px) clamp(16px, 1.71vw, 24px);
     border: 2px solid #fff;
     border-radius: clamp(12px, 1.14vw, 16px);
+    background: transparent;
     font-family: 'Delius', system-ui, sans-serif;
     font-weight: 400;
     font-size: clamp(18px, 1.71vw, 24px);
     line-height: 1;
     color: #fff;
     text-decoration: none;
-    transition: transform 150ms ease;
+    transition: transform 150ms ease, background-color 150ms ease, color 150ms ease;
   }
 
   .cta-frame__btn:hover,
   .cta-frame__btn:focus-visible {
     transform: scale(1.04);
+    background: #fff;
+    color: #000;
   }
 
   .cta-frame__btn:active {
@@ -1003,7 +1009,7 @@ const patternBg = `url('${bgPattern.src}')`;
 
   .card-form {
     position: absolute;
-    top: 33.969%;
+    top: 32.5%;
     left: 13.246cqi;
     display: flex;
     align-items: center;
@@ -1013,6 +1019,16 @@ const patternBg = `url('${bgPattern.src}')`;
     margin: 0;
     padding: 0;
     border: none;
+  }
+
+  /* When the email input is hidden (temp state), center the sign-up button
+     within the form area. Auto-reverts once the `hidden` attribute is removed. */
+  .card-form:has(.card-input[hidden]) {
+    justify-content: center;
+  }
+
+  .card-form:has(.card-input[hidden]) .card-button {
+    text-decoration: none;
   }
 
   .card-input,
@@ -1050,12 +1066,14 @@ const patternBg = `url('${bgPattern.src}')`;
   .card-button {
     cursor: pointer;
     white-space: nowrap;
-    transition: transform 150ms ease;
+    transition: transform 150ms ease, background-color 150ms ease, color 150ms ease;
   }
 
   .card-button:hover,
   .card-button:focus-visible {
     transform: scale(1.04);
+    background: #fff;
+    color: #000;
   }
 
   .card-button:active {
@@ -1622,18 +1640,21 @@ const patternBg = `url('${bgPattern.src}')`;
     padding: clamp(16px, 1.71vw, 24px) clamp(20px, 2.28vw, 32px);
     border: 2px solid #fff;
     border-radius: clamp(12px, 1.14vw, 16px);
+    background: transparent;
     font-family: 'Delius', system-ui, sans-serif;
     font-weight: 400;
     font-size: clamp(24px, 2.57vw, 36px);
     line-height: 1;
     color: #fff;
     text-decoration: none;
-    transition: transform 150ms ease;
+    transition: transform 150ms ease, background-color 150ms ease, color 150ms ease;
   }
 
   .closing-cta__btn:hover,
   .closing-cta__btn:focus-visible {
     transform: scale(1.04);
+    background: #fff;
+    color: #000;
   }
 
   .closing-cta__btn:active {
