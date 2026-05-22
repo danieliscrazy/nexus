@@ -122,6 +122,27 @@ const patternBg = `url('${bgPattern.src}')`;
           <div class="steps-card steps-card--2"><img class="steps-img" src="/steps.png" alt="" /></div>
           <div class="steps-card steps-card--3"><img class="steps-img" src="/steps.png" alt="" /></div>
           <div class="steps-card steps-card--4"><img class="steps-img" src="/steps.png" alt="" /></div>
+
+          <div class="cta-frame">
+            <div class="bord-slice cta-frame-slice cta-frame-slice--tl"><Image src={bordTl} alt="" widths={[60, 120]} sizes="5vw" loading="eager" /></div>
+            <div class="bord-slice cta-frame-slice cta-frame-slice--top"><Image src={bordTop} alt="" widths={[300, 600, 900]} sizes="40vw" loading="eager" /></div>
+            <div class="bord-slice cta-frame-slice cta-frame-slice--tr"><Image src={bordTr} alt="" widths={[60, 120]} sizes="5vw" loading="eager" /></div>
+            <div class="bord-slice cta-frame-slice cta-frame-slice--left"><Image src={bordLeft} alt="" widths={[60, 120]} sizes="5vw" loading="eager" /></div>
+            <div class="bord-slice cta-frame-slice cta-frame-slice--center"><Image src={bordCenter} alt="" widths={[300, 600, 900]} sizes="40vw" loading="eager" /></div>
+            <div class="bord-slice cta-frame-slice cta-frame-slice--right"><Image src={bordRight} alt="" widths={[60, 120]} sizes="5vw" loading="eager" /></div>
+            <div class="bord-slice cta-frame-slice cta-frame-slice--bl"><Image src={bordBl} alt="" widths={[60, 120]} sizes="5vw" loading="eager" /></div>
+            <div class="bord-slice cta-frame-slice cta-frame-slice--bottom"><Image src={bordBottom} alt="" widths={[300, 600, 900]} sizes="40vw" loading="eager" /></div>
+            <div class="bord-slice cta-frame-slice cta-frame-slice--br"><Image src={bordBr} alt="" widths={[60, 120]} sizes="5vw" loading="eager" /></div>
+            <div class="cta-frame__inner">
+              <h2 class="cta-frame__title">How Can I Go?</h2>
+              <p class="cta-frame__body">
+                You can get your ticket to Horizons Nexus by spending 35 hours making projects like games, websites, CLIs, and more.
+              </p>
+              <p class="cta-frame__body cta-frame__body--platform">You can do this through our Horizons platform.</p>
+              <a class="cta-frame__btn" href="https://horizons.hackclub.com" target="_blank" rel="noopener">Sign Up &rarr;</a>
+              <p class="cta-frame__fineprint">Horizons Nexus is only open to anyone 13&ndash;18. All skill levels are welcome.</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -269,28 +290,6 @@ const patternBg = `url('${bgPattern.src}')`;
       </div>
     </div>
 
-    <div class="cta-bord-wrap">
-      <div class="cta-bord">
-        <div class="bord-slice cta-bord-slice cta-bord-slice--tl"><Image src={bordTl} alt="" widths={[60, 120]} sizes="5vw" loading="lazy" /></div>
-        <div class="bord-slice cta-bord-slice cta-bord-slice--top"><Image src={bordTop} alt="" widths={[300, 600, 1200]} sizes="80vw" loading="lazy" /></div>
-        <div class="bord-slice cta-bord-slice cta-bord-slice--tr"><Image src={bordTr} alt="" widths={[60, 120]} sizes="5vw" loading="lazy" /></div>
-        <div class="bord-slice cta-bord-slice cta-bord-slice--left"><Image src={bordLeft} alt="" widths={[60, 120]} sizes="5vw" loading="lazy" /></div>
-        <div class="bord-slice cta-bord-slice cta-bord-slice--center"><Image src={bordCenter} alt="" widths={[300, 600, 1200]} sizes="80vw" loading="lazy" /></div>
-        <div class="bord-slice cta-bord-slice cta-bord-slice--right"><Image src={bordRight} alt="" widths={[60, 120]} sizes="5vw" loading="lazy" /></div>
-        <div class="bord-slice cta-bord-slice cta-bord-slice--bl"><Image src={bordBl} alt="" widths={[60, 120]} sizes="5vw" loading="lazy" /></div>
-        <div class="bord-slice cta-bord-slice cta-bord-slice--bottom"><Image src={bordBottom} alt="" widths={[300, 600, 1200]} sizes="80vw" loading="lazy" /></div>
-        <div class="bord-slice cta-bord-slice cta-bord-slice--br"><Image src={bordBr} alt="" widths={[60, 120]} sizes="5vw" loading="lazy" /></div>
-        <div class="cta-bord__inner">
-          <h2 class="cta-bord__title">How Can I Go?</h2>
-          <p class="cta-bord__body">
-            You can get your ticket to Horizons Nexus by spending 35 hours making projects like games, websites, CLIs, and more. You can do this through our Horizons platform.
-          </p>
-          <a class="cta-bord__btn" href="https://horizons.hackclub.com" target="_blank" rel="noopener">Sign Up &rarr;</a>
-          <p class="cta-bord__fineprint">Horizons Nexus is only open to anyone 13&ndash;18. All skill levels are welcome.</p>
-        </div>
-      </div>
-    </div>
-
     <div class="faq">
       <h2 class="faq__title">FAQ</h2>
       <div class="faq__grid">
@@ -376,7 +375,7 @@ const patternBg = `url('${bgPattern.src}')`;
   .scroll-shell {
     position: relative;
     width: 100%;
-    height: 1000svh;
+    height: 1500svh;
   }
 
   .hero {
@@ -650,22 +649,141 @@ const patternBg = `url('${bgPattern.src}')`;
   .steps-card--3 .steps-img { left: -41.61%;  top: -130%;    }
   .steps-card--4 .steps-img { left: -149.15%; top: -177.91%; }
 
-  /* Each step fades + scales 1.2 → 1; per-step progress provided by JS */
+  /* Each step fades + scales 1.2 → 1 on the way in (per-step progress from JS),
+     then the whole grid fades out together via --steps-out before the cta
+     phase begins. */
   .steps-card--1 {
-    opacity: var(--step-1, 0);
+    opacity: calc(var(--step-1, 0) * (1 - var(--steps-out, 0)));
     transform: scale(calc(1.2 - 0.2 * var(--step-1, 0)));
   }
   .steps-card--2 {
-    opacity: var(--step-2, 0);
+    opacity: calc(var(--step-2, 0) * (1 - var(--steps-out, 0)));
     transform: scale(calc(1.2 - 0.2 * var(--step-2, 0)));
   }
   .steps-card--3 {
-    opacity: var(--step-3, 0);
+    opacity: calc(var(--step-3, 0) * (1 - var(--steps-out, 0)));
     transform: scale(calc(1.2 - 0.2 * var(--step-3, 0)));
   }
   .steps-card--4 {
-    opacity: var(--step-4, 0);
+    opacity: calc(var(--step-4, 0) * (1 - var(--steps-out, 0)));
     transform: scale(calc(1.2 - 0.2 * var(--step-4, 0)));
+  }
+
+  /* "How Can I Go?" cta phase — sits in the same stage4-frame. The 9 bord
+     slices reveal one-by-one (same staggered pattern as the steps bord uses
+     with --reveal), then the inner content fades in once the frame is mostly
+     drawn. */
+  .cta-frame {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 60%;
+    aspect-ratio: 724.622 / 480;
+    transform: translate(-50%, -50%);
+    pointer-events: var(--cta-events, none);
+    color: #fff;
+  }
+
+  .cta-frame-slice :global(img) {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: fill;
+  }
+
+  /* 9-slice for the 724.622×480 bord: corners are 60.3×63.3 (top) / 60.3×57.4 (bottom) */
+  .cta-frame-slice--tl     { top: 0;       left: 0;     width: 8.32%; height: 13.19%; }
+  .cta-frame-slice--top    { top: 0;       left: 8.32%; right: 8.32%; height: 13.19%; }
+  .cta-frame-slice--tr     { top: 0;       right: 0;    width: 8.32%; height: 13.19%; }
+  .cta-frame-slice--left   { top: 13.19%;  bottom: 11.96%; left: 0;   width: 8.32%; }
+  .cta-frame-slice--center { top: 13.19%;  left: 8.32%; right: 8.32%; bottom: 11.96%; }
+  .cta-frame-slice--right  { top: 13.19%;  bottom: 11.96%; right: 0;  width: 8.32%; }
+  .cta-frame-slice--bl     { bottom: 0;    left: 0;     width: 8.32%; height: 11.96%; }
+  .cta-frame-slice--bottom { bottom: 0;    left: 8.32%; right: 8.32%; height: 11.96%; }
+  .cta-frame-slice--br     { bottom: 0;    right: 0;    width: 8.32%; height: 11.96%; }
+
+  /* Staggered slice reveal driven by --cta-in (each slice fades over 0.20 of
+     cta-in, starting 0.10 after the previous — same offsets as .bord-slice). */
+  .cta-frame-slice--tl     { opacity: clamp(0, calc((var(--cta-in, 0) - 0.00) * 5), 1); }
+  .cta-frame-slice--top    { opacity: clamp(0, calc((var(--cta-in, 0) - 0.10) * 5), 1); }
+  .cta-frame-slice--tr     { opacity: clamp(0, calc((var(--cta-in, 0) - 0.20) * 5), 1); }
+  .cta-frame-slice--right  { opacity: clamp(0, calc((var(--cta-in, 0) - 0.30) * 5), 1); }
+  .cta-frame-slice--br     { opacity: clamp(0, calc((var(--cta-in, 0) - 0.40) * 5), 1); }
+  .cta-frame-slice--bottom { opacity: clamp(0, calc((var(--cta-in, 0) - 0.50) * 5), 1); }
+  .cta-frame-slice--bl     { opacity: clamp(0, calc((var(--cta-in, 0) - 0.60) * 5), 1); }
+  .cta-frame-slice--left   { opacity: clamp(0, calc((var(--cta-in, 0) - 0.70) * 5), 1); }
+  .cta-frame-slice--center { opacity: clamp(0, calc((var(--cta-in, 0) - 0.80) * 5), 1); }
+
+  /* Inner content fades in shortly after the first slices appear. */
+  .cta-frame__inner {
+    opacity: clamp(0, calc((var(--cta-in, 0) - 0.30) * 2.5), 1);
+  }
+
+  .cta-frame__inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 1.4vw, 20px);
+    padding: clamp(28px, 5vw, 70px) clamp(20px, 6vw, 80px);
+    text-align: center;
+  }
+
+  .cta-frame__title {
+    margin: 0;
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(26px, 3.42vw, 48px);
+    line-height: 1;
+  }
+
+  .cta-frame__body {
+    margin: 0;
+    max-width: 615px;
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(15px, 1.71vw, 24px);
+    line-height: 1.35;
+  }
+
+  .cta-frame__body--platform {
+    margin-top: clamp(4px, 0.71vw, 10px);
+  }
+
+  .cta-frame__btn {
+    display: inline-block;
+    margin-top: clamp(4px, 0.71vw, 10px);
+    padding: clamp(10px, 1.14vw, 16px) clamp(16px, 1.71vw, 24px);
+    border: 2px solid #fff;
+    border-radius: clamp(12px, 1.14vw, 16px);
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(18px, 1.71vw, 24px);
+    line-height: 1;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 150ms ease;
+  }
+
+  .cta-frame__btn:hover,
+  .cta-frame__btn:focus-visible {
+    transform: scale(1.04);
+  }
+
+  .cta-frame__btn:active {
+    transform: scale(0.97);
+    transition-duration: 80ms;
+  }
+
+  .cta-frame__fineprint {
+    margin: clamp(4px, 0.57vw, 8px) 0 0;
+    font-family: 'Delius', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(12px, 1.14vw, 16px);
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.75);
   }
 
   .bg__blob :global(.bg__blob-img) {
@@ -984,6 +1102,16 @@ const patternBg = `url('${bgPattern.src}')`;
       font-size: 24px;
       width: 84cqi;
     }
+
+    .cta-frame {
+      width: 90%;
+      aspect-ratio: 591 / 540;
+    }
+
+    .cta-frame__inner {
+      padding: clamp(40px, 12vw, 70px) clamp(20px, 6vw, 36px);
+      gap: 10px;
+    }
   }
 
   /* Info / FAQ section — normal scroll after the sticky hero */
@@ -1163,101 +1291,6 @@ const patternBg = `url('${bgPattern.src}')`;
 
   .faq__card {
     min-height: clamp(160px, 14.26vw, 200px);
-  }
-
-  /* CTA bord — Figma: 1164×480, centered, sits between info rows and FAQ */
-  .cta-bord-wrap {
-    max-width: 1164px;
-    margin: 0 auto;
-    padding: clamp(60px, 8.5vw, 120px) clamp(20px, 4.9vw, 69px) 0;
-  }
-
-  .cta-bord {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1164 / 480;
-    color: #fff;
-  }
-
-  .cta-bord-slice :global(img) {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: fill;
-  }
-
-  /* 9-slice frame for the 1164×480 wider bord */
-  .cta-bord-slice--tl     { top: 0;      left: 0;     width: 5.18%;  height: 13.19%; }
-  .cta-bord-slice--top    { top: 0;      left: 5.18%; right: 5.18%; height: 13.19%; }
-  .cta-bord-slice--tr     { top: 0;      right: 0;    width: 5.18%;  height: 13.19%; }
-  .cta-bord-slice--left   { top: 13.19%; bottom: 11.96%; left: 0;    width: 5.18%; }
-  .cta-bord-slice--center { top: 13.19%; left: 5.18%; right: 5.18%; bottom: 11.96%; }
-  .cta-bord-slice--right  { top: 13.19%; bottom: 11.96%; right: 0;   width: 5.18%; }
-  .cta-bord-slice--bl     { bottom: 0;   left: 0;     width: 5.18%;  height: 11.96%; }
-  .cta-bord-slice--bottom { bottom: 0;   left: 5.18%; right: 5.18%; height: 11.96%; }
-  .cta-bord-slice--br     { bottom: 0;   right: 0;    width: 5.18%;  height: 11.96%; }
-
-  .cta-bord__inner {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: clamp(8px, 1.14vw, 16px);
-    padding: clamp(30px, 4.49vw, 63px) clamp(20px, 6.27vw, 88px);
-    text-align: center;
-  }
-
-  .cta-bord__title {
-    margin: 0;
-    font-family: 'Delius', system-ui, sans-serif;
-    font-weight: 400;
-    font-size: clamp(28px, 3.42vw, 48px);
-    line-height: 1;
-  }
-
-  .cta-bord__body {
-    margin: 0;
-    max-width: 787px;
-    font-family: 'Delius', system-ui, sans-serif;
-    font-weight: 400;
-    font-size: clamp(16px, 1.71vw, 24px);
-    line-height: 1.35;
-  }
-
-  .cta-bord__btn {
-    display: inline-block;
-    margin-top: clamp(4px, 0.71vw, 10px);
-    padding: clamp(10px, 1.14vw, 16px) clamp(16px, 1.71vw, 24px);
-    border: 2px solid #fff;
-    border-radius: clamp(12px, 1.14vw, 16px);
-    font-family: 'Delius', system-ui, sans-serif;
-    font-weight: 400;
-    font-size: clamp(18px, 1.71vw, 24px);
-    line-height: 1;
-    color: #fff;
-    text-decoration: none;
-    transition: transform 150ms ease;
-  }
-
-  .cta-bord__btn:hover,
-  .cta-bord__btn:focus-visible {
-    transform: scale(1.04);
-  }
-
-  .cta-bord__btn:active {
-    transform: scale(0.97);
-    transition-duration: 80ms;
-  }
-
-  .cta-bord__fineprint {
-    margin: clamp(4px, 0.57vw, 8px) 0 0;
-    font-family: 'Delius', system-ui, sans-serif;
-    font-weight: 400;
-    font-size: clamp(13px, 1.14vw, 16px);
-    line-height: 1.3;
-    color: rgba(255, 255, 255, 0.75);
   }
 
   /* Footer — Figma frame 2361:749. Painted brush-stroke background spans the
@@ -1484,15 +1517,6 @@ const patternBg = `url('${bgPattern.src}')`;
       grid-template-columns: 1fr;
     }
 
-    .cta-bord {
-      aspect-ratio: auto;
-      min-height: 360px;
-    }
-
-    .cta-bord__inner {
-      padding: clamp(40px, 14vw, 80px) clamp(24px, 8vw, 48px);
-    }
-
     .footer-painted {
       aspect-ratio: auto;
     }
@@ -1536,14 +1560,23 @@ const patternBg = `url('${bgPattern.src}')`;
       root.style.setProperty('--scroll-progress', '0');
       root.style.setProperty('--phase1', '0');
       root.style.setProperty('--phase2', '0');
+      root.style.setProperty('--steps-out', '0');
+      root.style.setProperty('--cta-in', '0');
+      root.style.setProperty('--cta-events', 'none');
       return;
     }
     const scrolled = Math.max(0, Math.min(range, -rect.top));
     const progress = scrolled / range;
-    // Compress the choreography into the first 80% of scroll progress; the
-    // remaining 20% holds the final state (last step card stays visible) before
-    // the info section scrolls in.
-    const p = Math.min(progress / 0.80, 1);
+    // The hero choreography (logo, card flips, zoom, bord, steps) was tuned
+    // against an original 900svh scroll range. To preserve those exact physical
+    // scroll distances while still being able to grow the shell freely for new
+    // phases at the end, drive the old animation off `oldProgress` — scroll
+    // distance in svh units, capped at the original 900svh range — instead of
+    // the live `progress` fraction.
+    const vh = window.innerHeight;
+    const scrolledSvh = scrolled / vh;
+    const oldProgress = Math.min(scrolledSvh / 9, 1);
+    const p = Math.min(oldProgress / 0.80, 1);
     // 4 transitions of 20% each separated by 4% holds.
     const phase1 = clamp01(p / 0.2);
     const phase2 = clamp01((p - 0.24) / 0.2);
@@ -1559,15 +1592,37 @@ const patternBg = `url('${bgPattern.src}')`;
     const zoom = clamp01((p - 0.55) / 0.12);     // starts mid-flipBack
     const reveal = clamp01((p - 0.62) / 0.10);
     const bordOut = clamp01(phase4 / 0.36);
-    // Step timeline runs in raw progress space (not p-space) so it can use the
-    // taller scroll-shell directly. Steps span progress 0.63 → 0.92 (≈290svh
-    // of scroll on a 1000svh range), then a ≈80svh hold to the end.
-    const stepsIn = clamp01((progress - 0.63) / 0.29);
+    // Steps span oldProgress 0.63 → 0.92 (≈290svh of scroll within the 900svh
+    // legacy range).
+    const stepsIn = clamp01((oldProgress - 0.63) / 0.29);
     // Each step fades over 0.10 of stepsIn with a 0.20 hold before the next.
     const step1 = clamp01(stepsIn / 0.10);
     const step2 = clamp01((stepsIn - 0.30) / 0.10);
     const step3 = clamp01((stepsIn - 0.60) / 0.10);
     const step4 = clamp01((stepsIn - 0.90) / 0.10);
+    // Cta phase: sequential.
+    //   1) Hold all four steps visible after the last one fades in.
+    //   2) Fade the entire steps grid out together.
+    //   3) Fade the "How Can I Go?" card in (starts the instant steps-out ends).
+    //   4) Tail hold so the cta is fully readable at the bottom of the shell.
+    // Values are in svh units (1.0 = one viewport of scroll). Anchored to
+    // absolute scroll position so growing the shell only extends the tail hold.
+    // The last step finishes appearing around scrolledSvh = 8.28.
+    const STEPS_OUT_START = 10.2; // ~192svh of all-steps-visible hold
+    const STEPS_OUT_END   = 11.7; // 150svh fade duration
+    const CTA_IN_START    = STEPS_OUT_END - 0.4; // overlap the tail of steps-out
+    const CTA_IN_END      = 13.1; // 180svh cta fade-in
+    const stepsOut = clamp01(
+      (scrolledSvh - STEPS_OUT_START) / (STEPS_OUT_END - STEPS_OUT_START)
+    );
+    const ctaIn = clamp01(
+      (scrolledSvh - CTA_IN_START) / (CTA_IN_END - CTA_IN_START)
+    );
+    root.style.setProperty('--steps-out', stepsOut.toFixed(4));
+    root.style.setProperty('--cta-in', ctaIn.toFixed(4));
+    // Only enable clicks once the button is mostly visible — opacity:0 elements
+    // are still clickable by default.
+    root.style.setProperty('--cta-events', ctaIn > 0.6 ? 'auto' : 'none');
     root.style.setProperty('--scroll-progress', progress.toFixed(4));
     root.style.setProperty('--phase1', phase1.toFixed(4));
     root.style.setProperty('--phase2', phase2.toFixed(4));
